@@ -1,0 +1,18 @@
+{
+  "name": "concious",
+  "version": "1.0.0",
+  "private": true,
+  "description": "A full-stack second-brain app for saving, organizing, and sharing useful links.",
+  "scripts": {
+    "dev:backend": "npm --prefix concious_backend run dev",
+    "dev:frontend": "npm --prefix concious_frontend run dev",
+    "build": "npm --prefix concious_backend run build && npm --prefix concious_frontend run build",
+    "build:backend": "npm --prefix concious_backend run build",
+    "build:frontend": "npm --prefix concious_frontend run build",
+    "lint:frontend": "npm --prefix concious_frontend run lint"
+  },
+  "workspaces": [
+    "concious_backend",
+    "concious_frontend"
+  ]
+}

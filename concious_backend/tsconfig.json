@@ -1,0 +1,42 @@
+{
+  "compilerOptions": {
+    /* File structure */
+    "rootDir": "./src",
+    "outDir": "./dist",
+
+    /* Node ESM environment */
+    "module": "nodenext",
+    "moduleResolution": "nodenext",
+    "target": "esnext",
+
+    /* Smooth imports for CommonJS libraries (express, bcrypt, etc.) */
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+
+    /* Other Outputs */
+    "sourceMap": true,
+    "declaration": true,
+    "declarationMap": true,
+
+    /* Strict typing */
+    "strict": true,
+    "noUncheckedIndexedAccess": true,
+    "exactOptionalPropertyTypes": true,
+
+    /* ESM-specific options */
+    "verbatimModuleSyntax": false,
+    "isolatedModules": true,
+    "noUncheckedSideEffectImports": true,
+    "moduleDetection": "force",
+
+    /* Speeds up compilation */
+    "skipLibCheck": true
+  },
+
+  /* IMPORTANT:
+     This ensures TypeScript picks up your custom
+     declaration file: src/types/express/index.d.ts
+  */
+  "include": ["src"]
+}
+
