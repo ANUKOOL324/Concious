@@ -4,96 +4,101 @@ const faqs = [
   {
     question: "What can I store in Concious right now?",
     answer:
-      "You can save and share your Dashboard of links from YouTube, Twitter (X), Spotify, articles, blogs, podcasts, and any web content you want to revisit later. Concious acts as a single place for everything you consume online.",
+      "You can save links from YouTube, Twitter (X), Spotify, articles, blogs, podcasts, and any web content you want to revisit later. Concious acts as one place for everything you consume online.",
   },
   {
     question: "How is Concious different from bookmarks or Notion?",
     answer:
-      "Bookmarks only store links, and Notion requires manual organization. Concious provide a better UI, automatically understands your content, keeps it searchable, and lets you retrieve it using natural language instead of folders.",
+      "Bookmarks only store links, and Notion usually needs manual structure. Concious is designed around retrieval, context, and a better reading flow, so your saved content stays easier to search and revisit.",
   },
   {
     question: "What does Ashqnor actually do?",
     answer:
-      "Ashqnor is an AI chatbot that helps you find, summarize, and recommend content based on what you’ve saved. You can ask things like “show me videos about focus” or “what should I watch next?”",
+      "Ashqnor is an AI assistant for your saved knowledge. It helps you find, summarize, and recommend content based on what you already collected, so you can ask naturally instead of hunting through folders.",
   },
   {
-    question: "Can Ashqnor recommend content I haven’t saved?",
+    question: "Can Ashqnor recommend content I have not saved yet?",
     answer:
-      "Yes. Ashqnor can suggest new videos, podcasts, or articles based on your saved content and interests — helping you discover relevant material instead of endless random scrolling.",
+      "Yes. Ashqnor can suggest new videos, podcasts, or articles based on your saved content and interests, helping you discover useful material instead of drifting into endless random scrolling.",
   },
   {
     question: "Why build Concious around AI at all?",
     answer:
-      "Because as your content grows, manual organization stops working. AI allows Concious to understand meaning, context, and patterns — so your saved knowledge stays usable, not buried.",
+      "Because manual organization breaks down as your library grows. AI helps Concious understand meaning, context, and patterns so your saved knowledge stays usable instead of getting buried.",
   },
 ];
 
 export function ProductFAQSection() {
-  const [openIndex, setOpenIndex] = useState<number | null>(null);
+  const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
-    <section id="fAQs" className="relative bg-black/75 text-white px-6 py-8">
-      <div className="max-w-4xl mx-auto">
-        <div className="text-center mb-16 mt-8">
-          <h2 className="text-5xl md:text-6xl font-semibold mb-3 tracking-tighter">
-            How Concious Works
-          </h2>
-          <p className="text-purple-400 max-w-2xl mx-auto text-lg tracking-tight">
-            Simple today.
-            <span className="text-white tracking-tighter ml-1">
-              Powerful by design.
-            </span>
-          </p>
-        </div>
-        <div className="space-y-5">
-          {faqs.map((faq, index) => {
-            const isOpen = openIndex === index;
+    <section
+      id="fAQs"
+      className="relative z-10 flex min-h-[calc(100vh-3.5rem)] flex-col justify-center px-5 py-10 text-white sm:px-8 sm:py-12 lg:px-10 lg:py-12"
+    >
+      <div className="mx-auto max-w-3xl text-center">
+        <p className="inline-flex rounded-full border border-white/18 bg-white/8 px-4 py-2 text-[0.72rem] uppercase tracking-[0.28em] text-stone-100/84 backdrop-blur-md">
+          FAQs
+        </p>
+        <h2 className="mt-5 text-4xl font-semibold tracking-[-0.06em] text-white sm:text-5xl lg:text-[3.7rem]">
+          How Concious works
+        </h2>
+        <p className="mx-auto mt-4 max-w-2xl text-sm leading-7 text-stone-200/88 sm:text-base">
+          Simple to start with today, but designed to become a more powerful way
+          to save, retrieve, and think over time.
+        </p>
+      </div>
 
-            return (
-              <div
-                key={index}
-                className="border border-white/10 rounded-2xl bg-white/5 backdrop-blur-noneoverflow-hidden"
+      <div className="mx-auto mt-8 w-full max-w-4xl space-y-4 lg:mt-10">
+        {faqs.map((faq, index) => {
+          const isOpen = openIndex === index;
+
+          return (
+            <div
+              key={faq.question}
+              className={`overflow-hidden rounded-[1.6rem] border backdrop-blur-xl transition duration-300 ${
+                isOpen
+                  ? "border-violet-300/28 bg-white/14 shadow-[0_24px_52px_rgba(76,29,149,0.16)]"
+                  : "border-white/12 bg-white/8 shadow-[0_16px_36px_rgba(0,0,0,0.12)]"
+              }`}
+            >
+              <button
+                onClick={() => setOpenIndex(isOpen ? null : index)}
+                className="flex w-full items-center justify-between gap-6 px-6 py-5 text-left transition hover:bg-white/5"
               >
-                <button
-                  onClick={() => setOpenIndex(isOpen ? null : index)}
-                  className="w-full flex items-center justify-between px-6 py-5 text-left font-medium hover:bg-white/5 transition tracking-tight"
+                <span className="text-base font-medium tracking-tight text-white sm:text-lg">
+                  {faq.question}
+                </span>
+                <span
+                  className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-full border text-lg transition duration-300 ${
+                    isOpen
+                      ? "rotate-45 border-violet-300/30 bg-violet-400/16 text-violet-200"
+                      : "border-white/14 bg-white/8 text-stone-200"
+                  }`}
                 >
-                  <span>{faq.question}</span>
-                  <span
-                    className={`transition-transform ${
-                      isOpen ? "rotate-45 text-purple-400" : ""
-                    }`}
-                  >
-                    +
-                  </span>
-                </button>
+                  +
+                </span>
+              </button>
 
-                <div
-                  className={`
-                    px-6
-                    transition-all
-                    duration-300
-                    overflow-hidden
-                    ${isOpen ? "max-h-72 py-4" : "max-h-0"}
-                  `}
-                >
-                  <p className="text-gray-300 leading-relaxed tracking-tight">
-                    {faq.answer}
-                  </p>
-                </div>
+              <div
+                className={`overflow-hidden px-6 transition-all duration-300 ${
+                  isOpen ? "max-h-64 pb-5" : "max-h-0"
+                }`}
+              >
+                <p className="max-w-3xl text-sm leading-7 text-stone-200/82 sm:text-[0.98rem]">
+                  {faq.answer}
+                </p>
               </div>
-            );
-          })}
-        </div>
+            </div>
+          );
+        })}
+      </div>
 
-        <div className="mt-20 text-center">
-          <p className="text-White text-lg tracking-tighter">
-            Concious starts as a place to save.
-            <span className="text-purple-400 tracking-tighter ml-1">
-              It grows as a place to think.
-            </span>
-          </p>
-        </div>
+      <div className="mt-8 text-center lg:mt-10">
+        <p className="text-lg tracking-tight text-white/92">
+          Concious starts as a place to save.
+          <span className="ml-1 text-violet-300">It grows into a place to think.</span>
+        </p>
       </div>
     </section>
   );

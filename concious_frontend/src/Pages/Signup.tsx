@@ -20,15 +20,19 @@ export function Signup() {
     const password = passwordRef.current?.value;
 
     try {
-      await axios.post(`${Backendurl}/api/v1/signup`, {
+      const res = await axios.post(`${Backendurl}/api/v1/signup`, {
         username,
         password,
       });
 
-      alert("You have signed up!");
+      alert(res.data.message ?? "You have signed up!");
       navigate("/Signin");
-    } catch {
-      alert("Something went wrong!");
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        alert(error.response?.data?.message ?? "Something went wrong!");
+      } else {
+        alert("Something went wrong!");
+      }
     } finally {
       setLoading(false);
     }
@@ -50,7 +54,11 @@ export function Signup() {
 
           <div className="flex flex-col gap-2 items-center">
             <Input reference={usernameRef} placeholder="Username" />
-            <Input reference={passwordRef} placeholder="Password" />
+            <Input
+              reference={passwordRef}
+              placeholder="Password"
+              type="password"
+            />
           </div>
 
           <div className="mt-4">

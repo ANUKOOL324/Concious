@@ -1,89 +1,139 @@
+const pricingPlans = [
+  {
+    name: "Free",
+    description: "For organizing links and building your first second-brain habit.",
+    price: "Rs 0",
+    cadence: "/ month",
+    cta: "Get Started",
+    featured: false,
+    features: [
+      { label: "Save YouTube, Twitter, and Spotify links", enabled: true },
+      { label: "Manual folders and tags", enabled: true },
+      { label: "Basic keyword search", enabled: true },
+      { label: "Ashqnor AI chatbot", enabled: false },
+      { label: "Semantic search", enabled: false },
+      { label: "Smart recommendations", enabled: false },
+    ],
+  },
+  {
+    name: "Premium",
+    description: "For people who want AI-assisted recall, search, and discovery.",
+    price: "Rs 399",
+    cadence: "/ month",
+    cta: "Upgrade to Premium",
+    featured: true,
+    features: [
+      { label: "Everything in Free", enabled: true },
+      { label: "Ashqnor AI chatbot", enabled: true },
+      { label: "Semantic search", enabled: true },
+      { label: "AI-powered recommendations", enabled: true },
+      { label: "Unlimited saved content", enabled: true },
+      { label: "Faster indexing", enabled: true },
+    ],
+  },
+  {
+    name: "Custom",
+    description: "Built for teams, communities, and organizations with special workflows.",
+    price: "Custom",
+    cadence: "",
+    cta: "Contact Sales",
+    featured: false,
+    features: [
+      { label: "Everything in Premium", enabled: true },
+      { label: "Team and multi-user access", enabled: true },
+      { label: "Custom AI workflows", enabled: true },
+      { label: "Dedicated support", enabled: true },
+      { label: "SLA and priority features", enabled: true },
+      { label: "Usage-based pricing", enabled: true },
+    ],
+  },
+];
+
 export function PricingSection() {
   return (
     <section
       id="pricing"
-      className="relative px-6 py-15 bg-black/10 text-white"
+      className="relative z-10 flex min-h-[calc(100vh-3.5rem)] flex-col justify-center px-5 py-10 text-white sm:px-8 sm:py-12 lg:px-10 lg:py-12"
     >
-      <div className="max-w-6xl mx-auto text-center mb-20">
-        <h2 className="text-5xl md:text-6xl font-semibold mb-6 tracking-tighter">
-          Simple pricing for <span className="text-purple-400">Concious</span>
+      <div className="mx-auto max-w-3xl text-center">
+        <p className="inline-flex rounded-full border border-white/18 bg-white/8 px-4 py-2 text-[0.72rem] uppercase tracking-[0.28em] text-stone-100/84 backdrop-blur-md">
+          Pricing
+        </p>
+        <h2 className="mt-5 text-4xl font-semibold tracking-[-0.06em] text-white sm:text-5xl lg:text-[3.7rem]">
+          Simple pricing for
+          <span className="block text-violet-300">Concious</span>
         </h2>
-        <p className="text-gray-400 max-w-2xl mx-auto">
-          Start free. Upgrade when Ashqnor becomes essential to your thinking.
+        <p className="mx-auto mt-4 max-w-2xl text-sm leading-7 text-stone-200/88 sm:text-base">
+          Start free, build the habit, and upgrade when Ashqnor becomes essential
+          to how you think and retrieve what matters.
         </p>
       </div>
-      <div className="max-w-6xl mx-auto grid md:grid-cols-3 gap-10">
-        <div className="rounded-3xl border border-white/10 bg-white/5 backdrop-blur-xl p-8 flex flex-col">
-          <h3 className="text-2xl font-semibold mb-2">Free</h3>
-          <p className="text-gray-400 mb-6">
-            For organizing links and basic discovery
-          </p>
 
-          <div className="text-4xl font-bold mb-8">
-            ₹0
-            <span className="text-lg font-normal text-gray-400"> / month</span>
+      <div className="mx-auto mt-8 grid w-full max-w-6xl gap-4 lg:mt-10 lg:grid-cols-3">
+        {pricingPlans.map((plan) => (
+          <div
+            key={plan.name}
+            className={`relative flex flex-col overflow-hidden rounded-[1.85rem] border p-6 backdrop-blur-xl transition duration-300 hover:-translate-y-1 hover:shadow-[0_26px_54px_rgba(0,0,0,0.18)] lg:p-7 ${
+              plan.featured
+                ? "border-violet-300/35 bg-[linear-gradient(180deg,_rgba(139,92,246,0.22)_0%,_rgba(255,255,255,0.08)_100%)] shadow-[0_24px_56px_rgba(76,29,149,0.22)]"
+                : "border-white/14 bg-white/10 shadow-[0_18px_40px_rgba(0,0,0,0.14)]"
+            }`}
+          >
+            {plan.featured ? (
+              <div className="absolute right-5 top-5 rounded-full border border-violet-200/30 bg-violet-400/18 px-3 py-1 text-[0.68rem] font-semibold uppercase tracking-[0.22em] text-violet-100">
+                Most Popular
+              </div>
+            ) : null}
+
+            <div className="pr-20">
+              <h3 className="text-2xl font-semibold tracking-[-0.04em] text-white">
+                {plan.name}
+              </h3>
+              <p className="mt-3 text-sm leading-6 text-stone-200/78">
+                {plan.description}
+              </p>
+            </div>
+
+            <div className="mt-8">
+              <div className="text-[2.6rem] font-semibold tracking-[-0.06em] text-white">
+                {plan.price}
+                {plan.cadence ? (
+                  <span className="ml-2 text-base font-medium tracking-normal text-stone-300/78">
+                    {plan.cadence}
+                  </span>
+                ) : null}
+              </div>
+            </div>
+
+            <ul className="mt-8 space-y-3 text-sm leading-6 text-stone-100/84">
+              {plan.features.map((feature) => (
+                <li
+                  key={feature.label}
+                  className={`flex items-start gap-3 ${
+                    feature.enabled ? "" : "text-stone-400/58"
+                  }`}
+                >
+                  <span
+                    className={`mt-2 h-1.5 w-1.5 rounded-full ${
+                      feature.enabled ? "bg-violet-300/85" : "bg-stone-500/55"
+                    }`}
+                  />
+                  <span>{feature.label}</span>
+                </li>
+              ))}
+            </ul>
+
+            <button
+              className={`mt-8 w-full rounded-2xl py-3 text-sm font-semibold transition duration-200 ${
+                plan.featured
+                  ? "bg-violet-500 text-white hover:bg-violet-400"
+                  : "border border-white/16 bg-white/10 text-white hover:bg-white/16"
+              }`}
+            >
+              {plan.cta}
+            </button>
           </div>
-
-          <ul className="space-y-4 text-gray-300 flex-1">
-            <li>✔ Save YouTube, Twitter, Spotify links</li>
-            <li>✔ Manual folders & tags</li>
-            <li>✔ Basic keyword search</li>
-            <li className="text-gray-500">✖ Ashqnor AI chatbot</li>
-            <li className="text-gray-500">✖ Semantic search</li>
-            <li className="text-gray-500">✖ Smart recommendations</li>
-          </ul>
-
-          <button className="mt-10 w-full rounded-xl bg-white/10 hover:bg-white/20 transition py-3">
-            Get Started
-          </button>
-        </div>
-
-        <div className="relative rounded-3xl border border-purple-500/40 bg-linear-to-b from-purple-500/20 to-white/5 backdrop-blur-xl p-8 flex flex-col shadow-2xl">
-          <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-purple-600 text-sm px-4 py-1 rounded-full">
-            Most Popular
-          </div>
-
-          <h3 className="text-2xl font-semibold mb-2">Premium</h3>
-          <p className="text-gray-300 mb-6">For thinkers powered by AI</p>
-
-          <div className="text-4xl font-bold mb-8">
-            ₹399
-            <span className="text-lg font-normal text-gray-300"> / month</span>
-          </div>
-
-          <ul className="space-y-4 text-gray-200 flex-1">
-            <li>✔ Everything in Free</li>
-            <li>✔ Ashqnor AI chatbot</li>
-            <li>✔ Semantic search (meaning-based)</li>
-            <li>✔ AI-powered recommendations</li>
-            <li>✔ Unlimited saved content</li>
-            <li>✔ Faster indexing</li>
-          </ul>
-
-          <button className="mt-10 w-full rounded-xl bg-purple-600 hover:bg-purple-700 transition py-3 font-semibold">
-            Upgrade to Premium
-          </button>
-        </div>
-
-        <div className="rounded-3xl border border-white/10 bg-white/5 backdrop-blur-xl p-8 flex flex-col">
-          <h3 className="text-2xl font-semibold mb-2">Custom</h3>
-          <p className="text-gray-400 mb-6">Built for teams & organizations</p>
-
-          <div className="text-4xl font-bold mb-8">Custom</div>
-
-          <ul className="space-y-4 text-gray-300 flex-1">
-            <li>✔ Everything in Premium</li>
-            <li>✔ Team & multi-user access</li>
-            <li>✔ Custom AI workflows</li>
-            <li>✔ Dedicated support</li>
-            <li>✔ SLA & priority features</li>
-            <li>✔ Usage-based pricing</li>
-          </ul>
-
-          <button className="mt-10 w-full rounded-xl bg-white/10 hover:bg-white/20 transition py-3">
-            Contact Sales
-          </button>
-        </div>
+        ))}
       </div>
     </section>
   );

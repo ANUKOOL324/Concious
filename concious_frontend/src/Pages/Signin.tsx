@@ -52,7 +52,11 @@ export function Signin() {
 
           <div className="flex flex-col gap-2 items-center">
             <Input reference={usernameRef} placeholder="Username" />
-            <Input reference={passwordRef} placeholder="Password" />
+            <Input
+              reference={passwordRef}
+              placeholder="Password"
+              type="password"
+            />
           </div>
 
           <div className="mt-4">
