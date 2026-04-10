@@ -4,6 +4,7 @@
   "private": true,
   "description": "A full-stack second-brain app for saving, organizing, and sharing useful links.",
   "scripts": {
+    "dev": "npm run dev:backend",
     "dev:backend": "npm --prefix concious_backend run dev",
     "dev:frontend": "npm --prefix concious_frontend run dev",
     "build": "npm --prefix concious_backend run build && npm --prefix concious_frontend run build",

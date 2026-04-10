@@ -1,7 +1,9 @@
 import mongoose, { model, Schema } from "mongoose";
 import { MONGO_URI } from "./config.js";
 
-mongoose.connect(MONGO_URI);
+export async function connectDB() {
+    await mongoose.connect(MONGO_URI);
+}
 
 const UserSchema = new Schema({
     username:{type:String , unique:true},
