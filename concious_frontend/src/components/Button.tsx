@@ -10,6 +10,7 @@ interface ButtonProps {
   Loading?: boolean;
   ProvoFunc?: () => void;
   TypeFunc?: () => void;
+  className?: string;
 }
 
 const varientClasses = {
@@ -83,6 +84,7 @@ export function Button({
   Loading,
   ProvoFunc,
   TypeFunc,
+  className,
 }: ButtonProps) {
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
@@ -99,7 +101,7 @@ export function Button({
       <button
         className={`${varientClasses[variety]}${defaultStyles}${
           fullWidth ? " w-full flex justify-center items-center" : ""
-        }`}
+        } ${className ?? ""}`}
         onClick={playSound}
       >
         <div className="pr-1 ml-1">{StartIcon}</div>

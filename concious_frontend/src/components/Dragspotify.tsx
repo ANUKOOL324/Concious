@@ -2,41 +2,33 @@ import { useState } from "react";
 import { Spotifydrag } from "../Embed/Spotifydrag";
 import { motion } from "framer-motion";
 
-export function Dragspotify() {
+export function Dragspotify({ darkMode = false }: { darkMode?: boolean }) {
   const [dragEnabled, setDragEnabled] = useState(false);
   return (
     <>
       <motion.div
         drag={dragEnabled}
         dragMomentum={false}
-        className="
-            w-60
-            bg-white
-            rounded-xl
-            shadow-lg shadow-purple-200/40
-            border-2 border-dashed border-l-purple-400/60 border-r-black border-t-purple-400/60
-            overflow-hidden
-          "
+        className={`w-full max-w-sm overflow-hidden rounded-xl lg:w-60 ${
+          darkMode
+            ? "border border-white/10 bg-slate-950/76 shadow-lg shadow-black/25"
+            : "border-2 border-dashed border-l-purple-400/60 border-r-black border-t-purple-400/60 bg-white shadow-lg shadow-purple-200/40"
+        }`}
       >
         <div
           onClick={() => setDragEnabled((v) => !v)}
-          className={`
-              h-10
-              flex items-center justify-center
-              text-sm font-medium
-              text-purple-600
-              bg-purple-50
-              border-b border-purple-200
-              select-none
-              ${dragEnabled ? "cursor-grabbing" : "cursor-grab"}
-            `}
+          className={`flex h-10 items-center justify-center select-none text-sm font-medium ${
+            darkMode
+              ? "border-b border-white/10 bg-slate-900 text-violet-200"
+              : "border-b border-purple-200 bg-purple-50 text-purple-600"
+          } ${dragEnabled ? "cursor-grabbing" : "cursor-grab"}`}
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            fill="black"
+            fill={darkMode ? "rgb(226 232 240)" : "black"}
             viewBox="0 0 24 24"
             stroke-width="1.5"
-            stroke="black"
+            stroke={darkMode ? "rgb(226 232 240)" : "black"}
             className="size-6"
           >
             <path

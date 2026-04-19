@@ -23,19 +23,13 @@ interface CardProps {
   title: string;
   link: string;
   type: "Youtube" | "Twitter" | "Spotify" | "Other";
+  darkMode?: boolean;
 }
 
 interface UpdateTitleArgs {
   id: string;
   title: string;
 }
-
-const selectType = {
-  Spotify: <SpotifyIcon />,
-  Twitter: <TwitterIcon />,
-  Youtube: <YoutubecardIcon />,
-  Other: <OtherIcon />,
-};
 
 function getYouTubeEmbedUrl(link: string): string | null {
   try {
@@ -71,6 +65,15 @@ function getSpotifyEmbedUrl(link: string): string | null {
   }
 }
 
+function getHostname(link: string): string | null {
+  try {
+    const url = new URL(link);
+    return url.hostname.replace(/^www\./, "");
+  } catch {
+    return null;
+  }
+}
+
 async function updateTitle({ id, title }: UpdateTitleArgs) {
   const res = await axios.patch(
     `${Backendurl}/api/v1/content/${id}`,
@@ -93,9 +96,20 @@ async function deleteContent(id: string) {
   });
 }
 
-export function Card({ _id, title, link, type }: CardProps) {
+export function Card({ _id, title, link, type, darkMode = false }: CardProps) {
   const embedUrl = type === "Youtube" ? getYouTubeEmbedUrl(link) : null;
   const spotifyEmbedUrl = type === "Spotify" ? getSpotifyEmbedUrl(link) : null;
+  const articleHost = type === "Other" ? getHostname(link) : null;
+  const typeIcon =
+    type === "Spotify" ? (
+      <SpotifyIcon />
+    ) : type === "Twitter" ? (
+      <TwitterIcon color={darkMode ? "#f5f5f4" : "#111827"} />
+    ) : type === "Youtube" ? (
+      <YoutubecardIcon />
+    ) : (
+      <OtherIcon darkMode={darkMode} />
+    );
 
   const [editing, setEditing] = useState(false);
   const [newTitle, setNewTitle] = useState(title);
@@ -110,7 +124,7 @@ export function Card({ _id, title, link, type }: CardProps) {
           item._id === updatedContent._id ? updatedContent : item
         )
       );
-      toast.success("Title updated !");
+      toast.success("Title updated!");
       setEditing(false);
     },
   });
@@ -126,7 +140,7 @@ export function Card({ _id, title, link, type }: CardProps) {
   async function copyLink() {
     try {
       await navigator.clipboard.writeText(link);
-      toast.success("Link copied 🔗");
+      toast.success("Link copied");
     } catch {
       toast.error("Failed to copy link");
     }
@@ -143,14 +157,15 @@ export function Card({ _id, title, link, type }: CardProps) {
 
   return (
     <div
-      className="p-4 min-h-[260px] bg-white rounded-md shadow-lg shadow-purple-200/40 w-95 border-2
-  border-dashed
-  border-gray-400/40
-  "
+      className={`min-h-[260px] w-full rounded-[1.6rem] border p-4 shadow-[0_18px_45px_rgba(15,23,42,0.08)] transition duration-200 hover:-translate-y-1 hover:shadow-[0_26px_60px_rgba(15,23,42,0.12)] ${
+        darkMode
+          ? "border-white/8 bg-slate-950/76 text-stone-100"
+          : "border-stone-200/80 bg-white"
+      }`}
     >
-      <div className="flex justify-between items-center">
+      <div className="flex items-center justify-between">
         <div className="flex items-center gap-2 text-md">
-          {selectType[type]}
+          {typeIcon}
 
           {editing ? (
             <input
@@ -158,36 +173,50 @@ export function Card({ _id, title, link, type }: CardProps) {
               onChange={(e) => setNewTitle(e.target.value)}
               onBlur={saveTitle}
               onKeyDown={(e) => e.key === "Enter" && saveTitle()}
-              className="border px-2 py-1 rounded text-sm focus:outline-none"
+              className={`rounded border px-2 py-1 text-sm focus:outline-none ${
+                darkMode
+                  ? "border-white/10 bg-slate-800 text-white"
+                  : "border-stone-300 bg-white text-stone-900"
+              }`}
               autoFocus
             />
           ) : (
             <span
               onClick={() => setEditing(true)}
-              className="cursor-pointer hover:underline"
+              className={`cursor-pointer hover:underline ${
+                darkMode ? "text-stone-100" : "text-stone-900"
+              }`}
             >
               {title}
             </span>
           )}
         </div>
-        <div className="flex items-center gap-2 ">
-          {" "}
+        <div className="flex items-center gap-2">
           <Sbutton
             ProvoFunc={copyLink}
-            css="text-gray-500 hover:text-purple-600 "
+            css={
+              darkMode
+                ? "text-stone-400 hover:text-violet-300"
+                : "text-gray-500 hover:text-purple-600"
+            }
             StartIcon={<ShareIcon />}
           />
           <Sbutton
             ProvoFunc={() => deleteMutation.mutate(_id)}
-            css="text-gray-500 hover:text-purple-600"
+            css={
+              darkMode
+                ? "text-stone-400 hover:text-violet-300"
+                : "text-gray-500 hover:text-purple-600"
+            }
             StartIcon={<Trashicon />}
           />
         </div>
       </div>
+
       <div className="pt-4">
         {type === "Youtube" && embedUrl && (
           <iframe
-            className="w-full aspect-video rounded"
+            className="aspect-video w-full rounded-xl"
             src={embedUrl}
             title="YouTube video"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -195,11 +224,15 @@ export function Card({ _id, title, link, type }: CardProps) {
           />
         )}
         {type === "Youtube" && !embedUrl && (
-          <p className="text-sm text-red-500">Invalid YouTube link</p>
+          <p className="text-sm text-rose-500">Invalid YouTube link</p>
         )}
 
         {type === "Twitter" && (
-          <div className="h-[200px] overflow-auto rounded bg-gray-100">
+          <div
+            className={`h-[200px] overflow-auto rounded-xl ${
+              darkMode ? "bg-slate-900" : "bg-stone-100"
+            }`}
+          >
             <blockquote className="twitter-tweet">
               <a href={link.replace("x.com", "twitter.com")}></a>
             </blockquote>
@@ -218,12 +251,56 @@ export function Card({ _id, title, link, type }: CardProps) {
             height="152"
             allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
             loading="lazy"
-            className="rounded aspect-16/5"
+            className="aspect-16/5 rounded-xl"
           />
         )}
 
         {type === "Spotify" && !spotifyEmbedUrl && (
-          <p className="text-sm text-red-500">Invalid Spotify link</p>
+          <p className="text-sm text-rose-500">Invalid Spotify link</p>
+        )}
+
+        {type === "Other" && (
+          <div
+            className={`rounded-xl border p-4 ${
+              darkMode
+                ? "border-white/10 bg-slate-900/70"
+                : "border-stone-200 bg-stone-50"
+            }`}
+          >
+            <p
+              className={`text-xs uppercase tracking-[0.22em] ${
+                darkMode ? "text-stone-400" : "text-stone-500"
+              }`}
+            >
+              Article
+            </p>
+            <p
+              className={`mt-2 text-sm font-semibold ${
+                darkMode ? "text-stone-100" : "text-stone-900"
+              }`}
+            >
+              {title?.trim() || "Untitled article"}
+            </p>
+            <p
+              className={`mt-1 text-xs ${
+                darkMode ? "text-stone-400" : "text-stone-600"
+              }`}
+            >
+              {articleHost ?? "External website"}
+            </p>
+            <a
+              href={link}
+              target="_blank"
+              rel="noreferrer"
+              className={`mt-4 inline-flex items-center rounded-lg px-3 py-2 text-sm font-medium transition ${
+                darkMode
+                  ? "bg-violet-500/18 text-violet-100 hover:bg-violet-500/28"
+                  : "bg-violet-100 text-violet-700 hover:bg-violet-200"
+              }`}
+            >
+              Open article
+            </a>
+          </div>
         )}
       </div>
     </div>
