@@ -46,17 +46,17 @@ export function Sharecard({ darkMode = false }: { darkMode?: boolean }) {
           darkMode ? "text-violet-300" : "text-purple-500"
         }`}
       >
-        Live collaboration
+        Read-only brain link
       </h2>
       <p className={`mt-3 text-center text-base ${darkMode ? "text-stone-100" : "text-gray-900"}`}>
-        Invite people to collaborate.
+        Let others view your saved content.
       </p>
       <p
         className={`mt-2 max-w-xl text-center text-sm ${
           darkMode ? "text-stone-400" : "text-gray-500"
         }`}
       >
-        Don&apos;t worry, the session is end-to-end encrypted and fully private.
+        Viewers can read your brain, but they cannot edit or delete your content.
       </p>
       <h2
         className={`mt-5 text-center text-xl font-medium tracking-wide ${

@@ -33,10 +33,6 @@
     "skipLibCheck": true
   },
 
-  /* IMPORTANT:
-     This ensures TypeScript picks up your custom
-     declaration file: src/types/express/index.d.ts
-  */
   "include": ["src"]
 }
 

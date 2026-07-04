@@ -122,6 +122,35 @@ Atlas index definition:
 }
 ```
 
+### 3b. Create the MongoDB Atlas Vector Search index for Content Chunks
+
+Create a vector index on the `contentchunks` collection with:
+
+- **Index name:** `chunk_vector_idx`
+- **Field:** `embedding`
+- **Dimensions:** `384`
+- **Similarity:** `cosine`
+- **Filtering Field:** `userId`
+
+Atlas index definition:
+
+```json
+{
+  "fields": [
+    {
+      "type": "vector",
+      "path": "embedding",
+      "numDimensions": 384,
+      "similarity": "cosine"
+    },
+    {
+      "type": "filter",
+      "path": "userId"
+    }
+  ]
+}
+```
+
 ### 4. Configure the frontend
 
 ```bash

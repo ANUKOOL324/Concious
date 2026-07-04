@@ -8,6 +8,19 @@ import { Signup } from "./Pages/Signup";
 import { Sharedbrain } from "./components/SharedBrain";
 import Main from "./Pages/Main";
 import WhyConscious from "./components/Whyconcious";
+import axios from "axios";
+
+// Global response interceptor to handle 401 Unauthorized (e.g. token expiration)
+axios.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    if (axios.isAxiosError(error) && error.response?.status === 401) {
+      localStorage.removeItem("Token");
+      window.location.href = "/signin";
+    }
+    return Promise.reject(error);
+  }
+);
 
 const queryClient = new QueryClient();
 

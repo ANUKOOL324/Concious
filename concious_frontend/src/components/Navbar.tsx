@@ -130,7 +130,7 @@ const Navbar = () => {
               <>
                 <button
                   className="rounded-full border border-stone-300 px-5 py-2 text-sm font-semibold text-stone-900 transition hover:border-violet-300 hover:text-violet-600"
-                  onClick={() => navigate("/Dashboard")}
+                  onClick={() => navigate("/dashboard")}
                 >
                   Dashboard
                 </button>
@@ -203,7 +203,7 @@ const Navbar = () => {
                     className="rounded-full border border-stone-300 px-5 py-3 text-sm font-semibold text-stone-900"
                     onClick={() => {
                       setIsMenuOpen(false);
-                      navigate("/Dashboard");
+                      navigate("/dashboard");
                     }}
                   >
                     Dashboard

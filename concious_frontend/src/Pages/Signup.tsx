@@ -1,10 +1,13 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Button } from "../components/Button";
 import { Input } from "../components/Input";
 import { Backendurl } from "../config";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { Design } from "./Design";
+import { logged } from "../HelperFunction/authcheck";
+import { getAuthErrorMessage } from "../HelperFunction/errorHandler";
+import toast from "react-hot-toast";
 
 export function Signup() {
   const navigate = useNavigate();
@@ -13,11 +16,52 @@ export function Signup() {
   const usernameRef = useRef<HTMLInputElement | null>(null);
   const passwordRef = useRef<HTMLInputElement | null>(null);
 
-  async function signup() {
-    setLoading(true);
+  useEffect(() => {
+    if (logged()) {
+      navigate("/dashboard");
+    }
+  }, [navigate]);
 
-    const username = usernameRef.current?.value;
+  async function signup() {
+    const username = usernameRef.current?.value?.trim();
     const password = passwordRef.current?.value;
+
+    if (!username && !password) {
+      toast.error("Please enter your username and password.");
+      return;
+    }
+
+    if (!username) {
+      toast.error("Please enter your username.");
+      return;
+    }
+
+    if (!password) {
+      toast.error("Please enter your password.");
+      return;
+    }
+
+    if (username.length < 3) {
+      toast.error("Username must be at least 3 characters long.");
+      return;
+    }
+
+    if (username.length > 10) {
+      toast.error("Username must not exceed 10 characters.");
+      return;
+    }
+
+    if (password.length < 8) {
+      toast.error("Password must be at least 8 characters long.");
+      return;
+    }
+
+    if (password.length > 20) {
+      toast.error("Password must not exceed 20 characters.");
+      return;
+    }
+
+    setLoading(true);
 
     try {
       const res = await axios.post(`${Backendurl}/api/v1/signup`, {
@@ -25,14 +69,10 @@ export function Signup() {
         password,
       });
 
-      alert(res.data.message ?? "You have signed up!");
-      navigate("/Signin");
+      toast.success(res.data.message ?? "Signed up successfully!");
+      navigate("/signin");
     } catch (error) {
-      if (axios.isAxiosError(error)) {
-        alert(error.response?.data?.message ?? "Something went wrong!");
-      } else {
-        alert("Something went wrong!");
-      }
+      toast.error(getAuthErrorMessage(error));
     } finally {
       setLoading(false);
     }
@@ -66,7 +106,7 @@ export function Signup() {
               Loading={loading}
               ProvoFunc={signup}
               variety="Sign"
-              text="Signup"
+              text={loading ? "Creating account..." : "Signup"}
               fullWidth={true}
             />
           </div>
@@ -74,7 +114,7 @@ export function Signup() {
           <p className="text-sm text-center mt-4 text-gray-600">
             Already registered?{" "}
             <span
-              onClick={() => navigate("/Signin")}
+              onClick={() => !loading && navigate("/signin")}
               className="text-blue-600 cursor-pointer hover:underline"
             >
               Sign in

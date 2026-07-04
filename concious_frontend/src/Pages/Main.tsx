@@ -142,7 +142,7 @@ function Main() {
             <div className="mt-5 flex flex-col items-center gap-3 sm:flex-row sm:flex-wrap lg:items-start">
               <button
                 onClick={() =>
-                  islogin ? navigate("/Dashboard") : navigate("/signup")
+                  islogin ? navigate("/dashboard") : navigate("/signup")
                 }
                 className="w-full rounded-full border border-stone-950/80 bg-stone-950/96 px-6 py-3 text-[0.98rem] font-semibold text-white shadow-[0_16px_34px_rgba(15,23,42,0.16)] transition duration-200 font-['Manrope',sans-serif] hover:-translate-y-0.5 hover:bg-stone-900 hover:shadow-[0_20px_40px_rgba(15,23,42,0.2)] active:translate-y-px active:scale-[0.985] active:shadow-[0_8px_18px_rgba(15,23,42,0.14)] sm:w-auto sm:px-7"
               >
