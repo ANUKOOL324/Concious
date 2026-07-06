@@ -23,7 +23,7 @@ export function Sbutton({css,text , StartIcon , onClose , soundSrc , Loading , P
   };
     return <>
     <audio ref={audioRef} src={soundSrc} preload="auto"/>
-    <button className={css} onClick={playSound} >
+    <button className={`cursor-pointer ${css ?? ""}`} onClick={playSound} >
         <div className="pr-1 ml-1">{StartIcon}</div>
         <div className="mr-1">{Loading?"Loading...":text}</div>
     </button>
