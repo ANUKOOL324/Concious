@@ -1,6 +1,6 @@
 import axios from "axios";
-import { Backendurl } from "../../../config";
-import { getAuthHeaders } from "../../../api/authHeaders";
+import { Backendurl } from "../../../../config";
+import { getAuthHeaders } from "../../../../api/authHeaders";
 import type { SemanticSearchResponse } from "./types";
 
 export async function runSemanticSearch(query: string) {

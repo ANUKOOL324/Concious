@@ -1,4 +1,8 @@
-export type SemanticSearchMode = "vector" | "lexical-fallback";
+export type SemanticSearchMode =
+  | "vector"
+  | "vector-chunk"
+  | "lexical-fallback"
+  | "hybrid";
 
 export interface SemanticSearchResult {
   _id?: string;
