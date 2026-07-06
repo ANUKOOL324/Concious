@@ -81,13 +81,7 @@ function Main() {
     if (!isAnimating) return;
 
     const radial = radialGroupRef.current;
-    if (!radial) {
-      setIsAnimating(false);
-      return;
-    }
-
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      setIsAnimating(false);
+    if (!radial || window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
       return;
     }
 
@@ -179,8 +173,15 @@ function Main() {
 
   const handleToggle = () => {
     if (isAnimating) return;
-    setIsAnimating(true);
+
+    const canAnimate =
+      radialGroupRef.current &&
+      !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
     setIsOpen((prev) => !prev);
+    if (canAnimate) {
+      setIsAnimating(true);
+    }
   };
 
   const handleCorePointerUp = (

@@ -1,6 +1,6 @@
 import { motion, useAnimation } from "framer-motion";
 import { TestimonialCard } from "./TestimonialCard";
-import { useEffect } from "react";
+import { useCallback, useEffect } from "react";
 
 type Testimonial = {
   name: string;
@@ -27,7 +27,7 @@ export function MovingRow({
 }) {
   const controls = useAnimation();
 
-  const startAnimation = () => {
+  const startAnimation = useCallback(() => {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
       return;
     }
@@ -40,11 +40,11 @@ export function MovingRow({
         ease: "linear",
       },
     });
-  };
+  }, [controls, direction]);
 
   useEffect(() => {
     startAnimation();
-  }, [controls, direction]);
+  }, [startAnimation]);
 
   return (
     <div className="overflow-hidden">
