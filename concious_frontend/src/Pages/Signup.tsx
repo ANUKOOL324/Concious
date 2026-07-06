@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
-import { Button } from "../components/Button";
-import { Input } from "../components/Input";
+import { Button } from "../components/common/Button";
+import { Input } from "../components/common/Input";
 import { Backendurl } from "../config";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
@@ -61,6 +61,26 @@ export function Signup() {
       return;
     }
 
+    if (!/[A-Z]/.test(password)) {
+      toast.error("Password must contain at least one uppercase letter.");
+      return;
+    }
+
+    if (!/[a-z]/.test(password)) {
+      toast.error("Password must contain at least one lowercase letter.");
+      return;
+    }
+
+    if (!/[0-9]/.test(password)) {
+      toast.error("Password must contain at least one number.");
+      return;
+    }
+
+    if (!/[^A-Za-z0-9]/.test(password)) {
+      toast.error("Password must contain at least one special character.");
+      return;
+    }
+
     setLoading(true);
 
     try {
@@ -99,6 +119,9 @@ export function Signup() {
               placeholder="Password"
               type="password"
             />
+            <p className="text-xs text-gray-500 px-2 -mt-1">
+              8–20 chars with uppercase, lowercase, number, and special character.
+            </p>
           </div>
 
           <div className="mt-4">

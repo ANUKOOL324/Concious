@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { gsap } from "gsap";
-import { RadialGroup } from "../components/RadialGroup";
-import { CenterBrand } from "../components/LockIcon";
+import { RadialGroup } from "../components/icons/RadialGroup";
+import { CenterBrand } from "../components/icons/LockIcon";
 
 export function Design(){
   const [isOpen, setIsOpen] = useState(true);

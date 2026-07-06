@@ -1,11 +1,11 @@
 import { useEffect, useRef, useState } from "react";
-import { Button } from "../components/Button";
-import { Input } from "../components/Input";
+import { Button } from "../components/common/Button";
+import { Input } from "../components/common/Input";
 import { Backendurl } from "../config";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { Design } from "./Design";
-import { logged } from "../HelperFunction/authcheck";
+import { logged, setAuthSession } from "../HelperFunction/authcheck";
 import { getAuthErrorMessage } from "../HelperFunction/errorHandler";
 import toast from "react-hot-toast";
 
@@ -49,7 +49,7 @@ export function Signin() {
         password,
       });
       const jwt = res.data.token;
-      localStorage.setItem("Token", jwt);
+      setAuthSession(jwt, username);
       toast.success("Signed in successfully!");
       navigate("/dashboard");
     } catch (error) {

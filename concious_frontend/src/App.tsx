@@ -5,19 +5,31 @@ import { Toaster } from "react-hot-toast";
 import Dashboard from "./Pages/dashboard";
 import { Signin } from "./Pages/Signin";
 import { Signup } from "./Pages/Signup";
-import { Sharedbrain } from "./components/SharedBrain";
+import { Sharedbrain } from "./components/share/SharedBrain";
 import Main from "./Pages/Main";
-import WhyConscious from "./components/Whyconcious";
+import WhyConscious from "./components/layout/Whyconcious";
 import axios from "axios";
 
-// Global response interceptor to handle 401 Unauthorized (e.g. token expiration)
+// Redirect to sign-in only when an authenticated API call fails (not login/signup attempts)
 axios.interceptors.response.use(
   (response) => response,
   (error) => {
-    if (axios.isAxiosError(error) && error.response?.status === 401) {
-      localStorage.removeItem("Token");
-      window.location.href = "/signin";
+    if (!axios.isAxiosError(error) || error.response?.status !== 401) {
+      return Promise.reject(error);
     }
+
+    const requestUrl = error.config?.url ?? "";
+    const isAuthRequest =
+      requestUrl.includes("/api/v1/signin") ||
+      requestUrl.includes("/api/v1/signup");
+
+    if (!isAuthRequest) {
+      localStorage.removeItem("Token");
+      if (window.location.pathname !== "/signin") {
+        window.location.href = "/signin";
+      }
+    }
+
     return Promise.reject(error);
   }
 );
