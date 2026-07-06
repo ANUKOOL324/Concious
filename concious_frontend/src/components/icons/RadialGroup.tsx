@@ -1,12 +1,15 @@
+import { forwardRef } from "react";
+
 interface RadialGroupProps {
   isOpen: boolean;
 }
 
-export const RadialGroup: React.FC<RadialGroupProps> = ({ isOpen }) => {
-  const color = isOpen ?  "#8d80bc" : "#070000";
-  
+export const RadialGroup = forwardRef<SVGGElement, RadialGroupProps>(
+  function RadialGroup({ isOpen }, ref) {
+  const color = isOpen ? "#8d80bc" : "#070000";
+
   return (
-    <g className="radialGroup">
+    <g ref={ref} className="radialGroup">
       <g opacity="0.6" fill={color}>
         <path d="M405.89,246.78l-1.14,7.2a1,1,0,0,1-1.06.84,45.61,45.61,0,0,0-21.17,3.34,1,1,0,0,1-1.27-.47l-3.32-6.5a1,1,0,0,1,.5-1.38A54.84,54.84,0,0,1,405,245.62,1,1,0,0,1,405.89,246.78Z"/>
         <path d="M376.79,260a1,1,0,0,1-.38,1.3,45.81,45.81,0,0,0-8.48,6.68,45.34,45.34,0,0,0-6.67,8.48,1,1,0,0,1-1.31.38l-6.49-3.32a1,1,0,0,1-.42-1.4,54.33,54.33,0,0,1,19-19,1,1,0,0,1,1.4.42Z"/>
@@ -57,5 +60,6 @@ export const RadialGroup: React.FC<RadialGroupProps> = ({ isOpen }) => {
       </g>
     </g>
   );
-};
+  }
+);
 

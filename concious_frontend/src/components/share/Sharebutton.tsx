@@ -24,7 +24,7 @@ export function Sharebutton({css,text , StartIcon , onClose , soundSrc , Loading
   };
     return <>
     <audio ref={audioRef} src={soundSrc} preload="auto"/>
-    <button className={`text-sm font-medium
+    <button className={`cursor-pointer text-sm font-medium
     px-4 py-2
     rounded-xl
     ${darkMode ? "text-violet-100 bg-violet-500/15 border border-violet-400/25 shadow-md shadow-black/20 hover:shadow-lg hover:bg-violet-500/25" : "text-purple-600 bg-gray-100 border border-gray-400 shadow-md shadow-purple-200/30 hover:shadow-lg hover:shadow-purple-300/40 hover:bg-purple-700"}

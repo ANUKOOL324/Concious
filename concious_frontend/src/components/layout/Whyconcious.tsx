@@ -1,6 +1,6 @@
-import { Consume } from "../sections/Consume";
-import { Collase } from "../sections/Collase";
-import { BackIcon } from "../Icon/BackIcon";
+import { Consume } from "../../sections/Consume";
+import { Collase } from "../../sections/Collase";
+import { BackIcon } from "../../Icon/BackIcon";
 import { useNavigate } from "react-router-dom";
 
 export default function WhyConscious() {

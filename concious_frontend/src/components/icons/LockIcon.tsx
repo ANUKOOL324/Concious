@@ -1,4 +1,4 @@
-import { BrianIcon } from "../Icon/BrainIcon";
+import { BrianIcon } from "../../Icon/BrainIcon";
 
 export const CenterBrand = () => {
   return (
