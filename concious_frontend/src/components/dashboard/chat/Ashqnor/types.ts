@@ -1,4 +1,9 @@
-export type AshqnorRetrievalMode = "vector" | "lexical-fallback";
+export type AshqnorRetrievalMode =
+  | "vector-chunk"
+  | "lexical-fallback"
+  | "conversational"
+  | "inventory-list"
+  | "content-picker";
 
 export interface AshqnorSource {
   title?: string | null;
@@ -11,6 +16,7 @@ export interface AshqnorChatResponse {
   mode: AshqnorRetrievalMode;
   response: string;
   sources: AshqnorSource[];
+  listLabel?: string;
 }
 
 export interface AshqnorMessage {
@@ -18,4 +24,5 @@ export interface AshqnorMessage {
   content: string;
   mode?: AshqnorRetrievalMode;
   sources?: AshqnorSource[];
+  listLabel?: string;
 }
