@@ -38,6 +38,7 @@ Thumbs.db
 # Local generated inventories
 allfiles.txt
 
-# Obsidian local vault settings (keep markdown notes)
+# Private local notes
 .obsidian/
 doc/.obsidian/
+doc/
