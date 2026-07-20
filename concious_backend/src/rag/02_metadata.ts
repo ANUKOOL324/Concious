@@ -15,7 +15,7 @@ export function buildMetadataText(input: {
   if (input.title) parts.push(`Title: ${input.title}`);
   if (input.type) parts.push(`Type: ${input.type}`);
   if (input.link) parts.push(`Link: ${input.link}`);
-  if (input.tags?.length) parts.push(`Tags: ${input.tags.join(", ")}`);
+  if (input.tags?.length) parts.push(`Tags: ${input.tags.join(", ")}`);// turns an array like ["sql", "database"] into "sql, database" 
   if (input.collection) parts.push(`Collection: ${input.collection}`);
   if (input.importance) parts.push(`Importance: ${input.importance}`);
   if (input.whySaved) parts.push(`Remember this for: ${input.whySaved}`);
@@ -23,5 +23,10 @@ export function buildMetadataText(input: {
   if (input.summary) parts.push(`User summary: ${input.summary}`);
   if (input.description) parts.push(`Description: ${input.description}`);
 
-  return parts.join("\n");
+  return parts.join("\n");//here, we join all the parts with a newline character to create a single string that contains all the metadata information in a readable format.
+
+  //for example, if the input object has a title, type, and link, the output string will look like this:
+  //Title:  my document
+  //Type: pdf
+  //Link: https://example.com/my-document.pdf
 }

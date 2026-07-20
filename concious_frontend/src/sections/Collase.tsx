@@ -15,10 +15,10 @@ export function Collase() {
               <p className="mb-4 text-[0.72rem] uppercase tracking-[0.32em] text-violet-300">
                 The Problem
               </p>
-              <h3 className="mb-3 text-2xl font-semibold tracking-tight">
+              <h3 className="text-balance mb-3 text-xl font-semibold tracking-tight sm:text-2xl">
                 We save hundreds of videos, tweets, podcasts
               </h3>
-              <p className="leading-7 text-slate-400">
+              <p className="text-pretty leading-6 text-slate-400 sm:leading-7">
                 Most are never revisited.
               </p>
             </div>
@@ -47,9 +47,10 @@ export function Collase() {
               <p className="mb-2 text-[0.68rem] uppercase tracking-[0.32em] text-violet-600">
                 Attention is the bottleneck
               </p>
-              <p className="font-medium leading-7 text-slate-700">
+              <p className="text-pretty font-medium leading-6 text-slate-700 sm:leading-7">
                 Information today is infinite.
-                <br />
+                <br className="hidden min-[420px]:inline" />
+                {" "}
                 Human attention is not.
               </p>
             </div>
@@ -67,10 +68,10 @@ export function Collase() {
               <p className="mb-4 text-[0.72rem] uppercase tracking-[0.32em] text-violet-300">
                 What Research Shows
               </p>
-              <h3 className="mb-3 text-xl font-semibold tracking-tight">
+              <h3 className="text-balance mb-3 text-lg font-semibold tracking-tight sm:text-xl">
                 The brain does not learn through constant exposure
               </h3>
-              <p className="text-sm leading-7 text-slate-400">
+              <p className="text-pretty text-sm leading-6 text-slate-400 sm:leading-7">
                 Learning happens through reflection, synthesis, and rest.
               </p>
             </div>
@@ -81,10 +82,10 @@ export function Collase() {
               <p className="mb-4 text-[0.72rem] uppercase tracking-[0.34em] text-violet-200">
                 Our Belief
               </p>
-              <h3 className="mb-4 text-3xl font-semibold tracking-tight">
+              <h3 className="text-balance mb-4 text-2xl font-semibold tracking-tight sm:text-3xl">
                 Information should compound your thinking, not fragment it.
               </h3>
-              <p className="text-lg leading-8 text-violet-100">
+              <p className="text-pretty text-base leading-7 text-violet-100 sm:text-lg sm:leading-8">
                 Tools should not fight for attention. They should protect it.
               </p>
             </div>
@@ -102,14 +103,14 @@ export function Collase() {
               <p className="mb-4 text-[0.72rem] uppercase tracking-[0.32em] text-slate-500">
                 What Concious Is
               </p>
-              <div className="space-y-3 text-slate-700">
-                <p className="font-medium">
+              <div className="text-pretty space-y-3 text-slate-700">
+                <p className="font-medium leading-6 sm:leading-7">
                   A place to store content intentionally
                 </p>
-                <p className="font-medium">
+                <p className="font-medium leading-6 sm:leading-7">
                   A system that encourages reflection
                 </p>
-                <p className="font-medium">
+                <p className="font-medium leading-6 sm:leading-7">
                   A second brain, not a second feed
                 </p>
               </div>
@@ -131,10 +132,10 @@ export function Collase() {
               <p className="mb-4 text-[0.72rem] uppercase tracking-[0.32em] text-violet-300">
                 Why AI Exists Here
               </p>
-              <h3 className="mb-3 text-2xl font-semibold tracking-tight">
+              <h3 className="text-balance mb-3 text-xl font-semibold tracking-tight sm:text-2xl">
                 Ashqnor is not built to push more content
               </h3>
-              <p className="leading-7 text-slate-400">
+              <p className="text-pretty leading-6 text-slate-400 sm:leading-7">
                 It exists to help you understand what you consume, why it
                 matters, and how it shapes your thinking.
               </p>

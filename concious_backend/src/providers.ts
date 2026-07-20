@@ -46,7 +46,7 @@ export async function getHfEmbedding(
   }
 
   let lastError: unknown;
-
+  
   for (let attempt = 0; attempt < 3; attempt += 1) {
     try {
       const payload = (await hfClient.featureExtraction({

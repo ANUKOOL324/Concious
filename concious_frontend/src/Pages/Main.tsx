@@ -132,9 +132,7 @@ function Main() {
   }, [isOpen, isAnimating]);
 
   useEffect(() => {
-    audioRef.current?.play().catch(() => {
-      // Autoplay may be blocked by the browser. Ignore silently.
-    });
+    audioRef.current?.play().catch(() => {});
   }, []);
 
   useEffect(() => {

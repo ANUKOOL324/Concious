@@ -10,7 +10,6 @@ import Main from "./Pages/Main";
 import WhyConscious from "./components/layout/Whyconcious";
 import axios from "axios";
 
-// Redirect to sign-in only when an authenticated API call fails (not login/signup attempts)
 axios.interceptors.response.use(
   (response) => response,
   (error) => {

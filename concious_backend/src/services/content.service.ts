@@ -7,12 +7,12 @@ import {
 } from "../providers/cloudinary.js";
 import { buildMetadataText, indexContentForRag } from "../rag/index.js";
 import {
-  normalizeImportance,
+  normalizeImportance,//clean user inputs
   normalizeTags,
   optionalText,
 } from "../utils/contentHelpers.js";
 
-export class ContentValidationError extends Error {
+export class ContentValidationError extends Error {//custom validation error , so the controller can know this is error from user not from server
   constructor(message: string) {
     super(message);
     this.name = "ContentValidationError";

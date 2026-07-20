@@ -13,14 +13,14 @@ export default function WhyConsciousHero() {
 
         <div className="grid gap-8 lg:grid-cols-[minmax(0,1.25fr)_minmax(18rem,0.75fr)] lg:items-end">
           <div className="max-w-4xl">
-            <h1 className="text-4xl font-semibold leading-[0.95] tracking-[-0.05em] text-white sm:text-5xl lg:text-7xl">
+            <h1 className="text-balance text-3xl font-semibold leading-[1.05] tracking-[-0.05em] text-white sm:text-5xl lg:text-7xl">
               Why Concious
               <span className="block bg-gradient-to-r from-violet-200 via-white to-violet-400 bg-clip-text text-transparent">
                 exists now
               </span>
             </h1>
 
-            <p className="mt-5 max-w-3xl text-base leading-8 text-slate-200 sm:text-lg lg:text-[1.15rem]">
+            <p className="text-pretty mt-5 max-w-3xl text-base leading-7 text-slate-200 sm:text-lg sm:leading-8 lg:text-[1.15rem]">
               The internet does not wear us down simply because we use it. It
               wears us down because most of our digital intake happens
               <span className="font-semibold text-violet-300">
@@ -36,7 +36,7 @@ export default function WhyConsciousHero() {
               <p className="text-[0.68rem] uppercase tracking-[0.34em] text-violet-200">
                 The Shift
               </p>
-              <p className="mt-3 text-sm leading-7 text-slate-200">
+              <p className="text-pretty mt-3 text-sm leading-6 text-slate-200 sm:leading-7">
                 Less noise, more reflection. Less saving, more synthesis.
               </p>
             </div>
@@ -44,7 +44,7 @@ export default function WhyConsciousHero() {
               <p className="text-[0.68rem] uppercase tracking-[0.34em] text-violet-200">
                 The Promise
               </p>
-              <p className="mt-3 text-sm leading-7 text-slate-100">
+              <p className="text-pretty mt-3 text-sm leading-6 text-slate-100 sm:leading-7">
                 Build a second brain that protects attention instead of
                 fragmenting it.
               </p>

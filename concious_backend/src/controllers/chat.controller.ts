@@ -9,7 +9,7 @@ export async function chat(req: Request, res: Response) {
       return res.status(400).json({ message: "Message is required" });
     }
 
-    const result = await chatWithAshqnor(String(req.userId), message);
+    const result = await chatWithAshqnor(String(req.userId), message);//--still working herer only the message is passed to the chatWithAshqnor function not the full chat history
     return res.json(result);
   } catch (error) {
     console.error("chat request failed", error);

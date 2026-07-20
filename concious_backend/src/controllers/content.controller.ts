@@ -63,7 +63,7 @@ export async function streamPdf(req: Request, res: Response) {
   }
 
   try {
-    const upstream = await fetch(source.secureUrl);
+    const upstream = await fetch(source.secureUrl);//
 
     if (!upstream.ok) {
       return res.status(502).json({ message: "Failed to retrieve PDF file" });
@@ -73,7 +73,7 @@ export async function streamPdf(req: Request, res: Response) {
 
     res.setHeader("Content-Type", "application/pdf");
     res.setHeader(
-      "Content-Disposition",
+      "Content-Disposition",//telling the browser to display the PDF inline and provide a filename for download
       `inline; filename="${encodeURIComponent(source.filename)}"`
     );
     res.setHeader("Cache-Control", "private, max-age=3600");
@@ -95,7 +95,6 @@ export async function update(req: Request, res: Response) {
   if (!updated) {
     return res.status(404).json({ message: "Content not found or unauthorized" });
   }
-
   return res.json(updated);
 }
 
@@ -108,6 +107,8 @@ export async function remove(req: Request, res: Response) {
 
   return res.json({ message: "content is delete" });
 }
+
+//these two are for manual testing or reindexing all content for a user, not exposed in routes yet
 
 export async function reindexOne(req: Request, res: Response) {
   try {
@@ -129,7 +130,6 @@ export async function reindexOne(req: Request, res: Response) {
     return res.status(500).json({ message: "failed to reindex content" });
   }
 }
-
 export async function reindexAll(req: Request, res: Response) {
   try {
     const updated = await reindexAllUserContent(String(req.userId));

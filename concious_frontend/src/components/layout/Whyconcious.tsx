@@ -42,15 +42,10 @@ export default function WhyConscious() {
                 <p className="mb-2 text-[0.7rem] uppercase tracking-[0.35em] text-violet-500">
                   Why Concious
                 </p>
-                <h1 className="text-2xl font-semibold tracking-tight text-slate-950 sm:text-3xl lg:text-[2.4rem]">
+                <h1 className="text-balance text-2xl font-semibold tracking-tight text-slate-950 sm:text-3xl lg:text-[2.4rem]">
                   A calmer product story for how digital attention should feel.
                 </h1>
               </div>
-              <p className="max-w-xl text-sm leading-7 text-slate-600 sm:text-[0.95rem]">
-                This page keeps your original narrative, but frames it more like
-                a premium editorial experience that breathes properly on phones,
-                tablets, laptops, and wider screens.
-              </p>
             </div>
 
             <Collase />

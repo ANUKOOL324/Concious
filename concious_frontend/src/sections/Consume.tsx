@@ -48,14 +48,14 @@ export function Consume() {
             What You Consume
           </div>
 
-          <h2 className="mt-6 text-4xl font-semibold tracking-[-0.05em] text-white sm:text-5xl lg:text-6xl">
+          <h2 className="text-balance mt-6 text-3xl font-semibold tracking-[-0.05em] text-white sm:text-5xl lg:text-6xl">
             Your digital inputs
             <span className="block bg-gradient-to-r from-violet-300 via-white to-violet-400 bg-clip-text text-transparent">
               shape who you become
             </span>
           </h2>
 
-          <p className="mx-auto mt-6 max-w-3xl text-base leading-8 text-slate-200 sm:text-lg">
+          <p className="text-pretty mx-auto mt-6 max-w-3xl text-base leading-7 text-slate-200 sm:text-lg sm:leading-8">
             Concious helps you capture, understand, and evolve your digital
             consumption, not just store it. The goal is not more saved content.
             It is clearer thinking.
@@ -81,7 +81,7 @@ export function Consume() {
                   {card.items.map((item) => (
                     <li
                       key={item}
-                      className="flex items-start gap-3 text-[1rem] leading-7 text-slate-100"
+                      className="text-pretty flex items-start gap-3 text-[0.95rem] leading-6 text-slate-100 sm:text-[1rem] sm:leading-7"
                     >
                       <span className="mt-2 h-2.5 w-2.5 rounded-full bg-gradient-to-br from-violet-300 to-violet-500 shadow-[0_0_18px_rgba(167,139,250,0.55)]" />
                       <span>{item}</span>
@@ -89,7 +89,7 @@ export function Consume() {
                   ))}
                 </ul>
 
-                <div className="mt-8 border-t border-white/10 pt-5 text-sm leading-7 text-slate-300">
+                <div className="text-pretty mt-8 border-t border-white/10 pt-5 text-sm leading-6 text-slate-300 sm:leading-7">
                   {card.footer}
                 </div>
               </div>
@@ -97,23 +97,23 @@ export function Consume() {
           ))}
         </div>
 
-        <div className="mt-10 rounded-[2rem] border border-white/12 bg-gradient-to-br from-white/8 to-white/4 px-6 py-8 text-center shadow-[0_24px_70px_rgba(2,6,23,0.16)] backdrop-blur-xl sm:px-10 sm:py-10 lg:mt-14">
-          <p className="text-2xl font-medium leading-[1.35] tracking-[-0.03em] text-white sm:text-3xl">
-            You do not just consume content.
-            <span className="block text-violet-300">
-              You absorb values, habits, and beliefs.
+        <div className="mt-10 rounded-[2rem] border border-white/12 bg-gradient-to-br from-white/8 to-white/4 px-5 py-7 text-center shadow-[0_24px_70px_rgba(2,6,23,0.16)] backdrop-blur-xl sm:px-10 sm:py-10 lg:mt-14">
+          <p className="text-balance mx-auto max-w-[22rem] text-xl font-medium leading-snug tracking-[-0.03em] text-white sm:max-w-2xl sm:text-2xl sm:leading-[1.35] lg:text-3xl">
+            You do not just consume&nbsp;content.
+            <span className="mt-2 block text-violet-300">
+              You absorb values, habits, and&nbsp;beliefs.
             </span>
           </p>
-          <p className="mx-auto mt-5 max-w-3xl text-base leading-8 text-slate-300 sm:text-lg">
-            Concious makes that process visible, intentional, and intelligent.
+          <p className="text-pretty mx-auto mt-4 max-w-[20rem] text-sm leading-6 text-slate-300 sm:mt-5 sm:max-w-2xl sm:text-base sm:leading-8 lg:text-lg">
+            Concious makes that process visible, intentional, and&nbsp;intelligent.
           </p>
         </div>
 
         <div className="mt-10 border-t border-white/10 pt-8 text-center lg:mt-14">
-          <p className="text-xl font-light italic tracking-[-0.03em] text-slate-200 sm:text-2xl">
+          <p className="text-balance mx-auto max-w-xl text-lg font-light italic leading-snug tracking-[-0.03em] text-slate-200 sm:text-2xl sm:leading-relaxed">
             A calm and clear mind will soon become a necessity, not a luxury.
           </p>
-          <p className="mt-5 text-2xl font-semibold tracking-[-0.04em] text-violet-300 sm:text-3xl">
+          <p className="text-balance mt-4 text-xl font-semibold tracking-[-0.04em] text-violet-300 sm:mt-5 sm:text-3xl">
             Concious exists for that future.
           </p>
         </div>
