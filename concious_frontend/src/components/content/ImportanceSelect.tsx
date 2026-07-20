@@ -1,12 +1,12 @@
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import type { Importance } from "../../types/content";
-import { contentModalFieldClass } from "./contentModalStyles";
+import { contentModalSelectTriggerClass } from "./contentModalStyles";
 
 const IMPORTANCE_OPTIONS: { value: Importance; label: string }[] = [
-  { value: "low", label: "Low importance" },
-  { value: "medium", label: "Medium importance" },
-  { value: "high", label: "High importance" },
+  { value: "low", label: "Low" },
+  { value: "medium", label: "Medium" },
+  { value: "high", label: "High" },
 ];
 
 interface ImportanceSelectProps {
@@ -36,7 +36,7 @@ export function ImportanceSelect({
 
   const selectedLabel =
     IMPORTANCE_OPTIONS.find((option) => option.value === value)?.label ??
-    "Medium importance";
+    "Medium";
 
   function updateMenuPosition() {
     const trigger = triggerRef.current;
@@ -160,9 +160,9 @@ export function ImportanceSelect({
           aria-haspopup="listbox"
           aria-expanded={open}
           onClick={() => setOpen((isOpen) => !isOpen)}
-          className={`${contentModalFieldClass(darkMode)} flex cursor-pointer items-center justify-between gap-2 text-left`}
+          className={`${contentModalSelectTriggerClass(darkMode)} flex items-center justify-between gap-2 text-left`}
         >
-          <span className="truncate">{selectedLabel}</span>
+          <span className="pointer-events-none truncate">{selectedLabel}</span>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 20 20"

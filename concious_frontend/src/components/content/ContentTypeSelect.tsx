@@ -1,7 +1,7 @@
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import type { ContentType } from "../../types/content";
-import { contentModalFieldClass } from "./contentModalStyles";
+import { contentModalSelectTriggerClass } from "./contentModalStyles";
 
 interface ContentTypeOption {
   label: string;
@@ -173,9 +173,9 @@ export function ContentTypeSelect({
           aria-haspopup="listbox"
           aria-expanded={open}
           onClick={() => setOpen((isOpen) => !isOpen)}
-          className={`${contentModalFieldClass(darkMode)} flex cursor-pointer items-center justify-between gap-2 text-left`}
+          className={`${contentModalSelectTriggerClass(darkMode)} flex items-center justify-between gap-2 text-left`}
         >
-          <span className={`truncate ${triggerTextClass}`}>{selectedLabel}</span>
+          <span className={`pointer-events-none truncate ${triggerTextClass}`}>{selectedLabel}</span>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 20 20"

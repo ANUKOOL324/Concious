@@ -23,6 +23,14 @@ export function contentModalFieldClass(darkMode: boolean) {
   }`;
 }
 
+export function contentModalSelectTriggerClass(darkMode: boolean) {
+  return `w-full cursor-pointer select-none rounded-xl border px-3.5 py-2.5 text-sm outline-none transition ${
+    darkMode
+      ? "border-white/10 bg-slate-900/80 text-stone-100 focus:border-violet-400/50"
+      : "border-stone-300 bg-white text-stone-900 focus:border-violet-300"
+  }`;
+}
+
 export function contentModalLabelClass(darkMode: boolean) {
   return `mb-1.5 block text-xs font-semibold uppercase tracking-[0.18em] ${
     darkMode ? "text-stone-400" : "text-stone-500"
