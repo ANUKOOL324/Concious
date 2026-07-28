@@ -35,7 +35,7 @@ export function Sharecard({ darkMode = false }: { darkMode?: boolean }) {
 
   return (
     <div
-      className={`absolute right-0 top-[calc(100%+0.65rem)] z-50 w-[min(18rem,calc(100vw-2rem))] rounded-[1.3rem] border px-4 py-4 shadow-[0_24px_60px_rgba(15,23,42,0.18)] sm:w-64 ${
+      className={`absolute right-0 top-[calc(100%+0.65rem)] z-[80] w-[min(14rem,calc(100vw-2rem))] rounded-[1.3rem] border px-4 py-4 shadow-[0_24px_60px_rgba(15,23,42,0.18)] sm:w-56 ${
         darkMode
           ? "border-white/10 bg-slate-950 shadow-[0_24px_60px_rgba(0,0,0,0.45)]"
           : "border-stone-200 bg-white shadow-[0_18px_45px_rgba(15,23,42,0.14)]"
@@ -54,10 +54,10 @@ export function Sharecard({ darkMode = false }: { darkMode?: boolean }) {
           darkMode={darkMode}
           css={
             darkMode
-              ? "rounded-2xl bg-violet-500 px-4 py-2.5 text-sm font-semibold text-white hover:bg-violet-400"
-              : "rounded-2xl bg-violet-600 px-4 py-2.5 text-sm font-semibold text-white hover:bg-violet-500"
+              ? "inline-flex w-auto items-center justify-center whitespace-nowrap rounded-2xl bg-violet-500 px-5 py-2.5 text-sm font-semibold text-white hover:bg-violet-400"
+              : "inline-flex w-auto items-center justify-center whitespace-nowrap rounded-2xl bg-violet-600 px-5 py-2.5 text-sm font-semibold text-white hover:bg-violet-500"
           }
-          text="Copy shareable link"
+          text="Copy link"
           onClose={() => shareMutation.mutate()}
         />
       </div>

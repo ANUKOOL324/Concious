@@ -1,4 +1,5 @@
-import { useRef, type ReactElement } from "react";
+import type { ReactElement } from "react";
+import { playSound, playUiClickSound } from "../../HelperFunction/sounds";
 
 interface ButtonProps {
   css?: string;
@@ -6,6 +7,7 @@ interface ButtonProps {
   StartIcon?: ReactElement;
   onClose?: () => void;
   soundSrc?: string;
+  withSound?: boolean;
   fullWidth?: boolean;
   Loading?: boolean;
   ProvoFunc?: () => void;
@@ -18,25 +20,25 @@ export function Nbutton({
   StartIcon,
   onClose,
   soundSrc,
+  withSound = false,
   ProvoFunc,
   TypeFunc,
 }: ButtonProps) {
-  const audioRef = useRef<HTMLAudioElement | null>(null);
-
-  const playSound = () => {
-    audioRef.current?.play();
+  const playClick = () => {
+    if (soundSrc) {
+      playSound(soundSrc);
+    } else if (withSound) {
+      playUiClickSound();
+    }
     onClose?.();
     ProvoFunc?.();
     TypeFunc?.();
   };
 
   return (
-    <>
-      <audio ref={audioRef} src={soundSrc} preload="auto" />
-      <button className={css} onClick={playSound}>
-        <div className="cursor-pointer">{StartIcon}</div>
-        <div className="cursor-pointer">{text}</div>
-      </button>
-    </>
+    <button type="button" className={`cursor-pointer ${css ?? ""}`} onClick={playClick}>
+      {StartIcon ? <span className="shrink-0">{StartIcon}</span> : null}
+      {text ? <span>{text}</span> : null}
+    </button>
   );
 }

@@ -1,7 +1,11 @@
 import { useEffect, useRef, useState } from "react";
 import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
-import { contentModalOverlayClass } from "../../../content/contentModalStyles";
+import { CrossIcon } from "../../../../Icon/CrossIcon";
+import {
+  contentModalCloseButtonClass,
+  contentModalOverlayClass,
+} from "../../../content/contentModalStyles";
 import { runAshqnorChat } from "./api";
 import type { AshqnorMessage, AshqnorSource } from "./types";
 
@@ -235,27 +239,11 @@ export function AshqnorChat({ darkMode }: AshqnorChatProps) {
             </div>
             <button
               type="button"
+              aria-label="Close Ashqnor chat"
               onClick={() => setChatOpen(false)}
-              className={`cursor-pointer rounded-full p-2 transition ${
-                darkMode
-                  ? "text-stone-500 hover:bg-white/5 hover:text-stone-200"
-                  : "text-stone-500 hover:bg-stone-100 hover:text-stone-800"
-              }`}
+              className={contentModalCloseButtonClass(darkMode)}
             >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="1.8"
-                className="h-5 w-5"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M6 6l12 12M18 6 6 18"
-                />
-              </svg>
+              <CrossIcon />
             </button>
           </div>
 

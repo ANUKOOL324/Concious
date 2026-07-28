@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { useScrollReveal } from "../components/common/useScrollReveal";
 
 const faqs = [
@@ -48,6 +48,7 @@ const faqs = [
 export function ProductFAQSection() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
   const reveal = useScrollReveal();
+  const reduceMotion = useReducedMotion();
 
   return (
     <section
@@ -55,53 +56,50 @@ export function ProductFAQSection() {
       className="relative z-10 flex min-h-0 flex-col justify-center px-4 py-8 text-white sm:px-6 sm:py-10 md:px-8 md:py-12 lg:min-h-[calc(100vh-3.5rem)] lg:px-10 lg:py-12"
     >
       <div className="mx-auto max-w-3xl text-center">
-        <p className="inline-flex rounded-full border border-white/18 bg-white/8 px-3 py-1.5 text-[0.58rem] uppercase tracking-[0.2em] text-stone-100/84 backdrop-blur-md sm:px-4 sm:py-2 sm:text-[0.68rem] md:text-[0.72rem] md:tracking-[0.28em]">
+        <p className="inline-flex rounded-full border border-white/18 bg-white/8 px-3 py-1.5 text-[0.58rem] uppercase tracking-[0.2em] text-stone-100/84 backdrop-blur-md sm:px-4 sm:py-2 sm:text-[0.65rem] sm:tracking-[0.26em]">
           FAQs
         </p>
-        <h2 className="mt-3 text-[1.75rem] font-semibold leading-[1.02] tracking-[-0.05em] text-white sm:mt-4 sm:text-4xl md:mt-5 md:text-[2.6rem] lg:text-5xl lg:text-[3.7rem] lg:tracking-[-0.06em]">
-          How Concious works
+        <h2 className="mt-3 text-[1.55rem] font-semibold leading-[1.1] tracking-[-0.04em] text-white sm:mt-4 sm:text-[2rem] md:text-[2.25rem] lg:text-[2.5rem] lg:tracking-[-0.05em]">
+          How{" "}
+          <span className="text-white">Conc</span>
+          <span className="text-violet-400">ious</span>
+          {" "}works
         </h2>
-        <p className="mx-auto mt-3 max-w-2xl text-xs leading-6 text-stone-200/88 sm:text-sm sm:leading-6 md:mt-4 md:text-[0.95rem] md:leading-7 lg:text-base">
-          <span className="md:hidden">
-            Simple to start today, powerful as your library grows.
-          </span>
-          <span className="hidden md:inline lg:hidden">
-            Simple to start today, designed to become more powerful over time.
-          </span>
-          <span className="hidden lg:inline">
-            Simple to start with today, but designed to become a more powerful way
-            to save, retrieve, and think over time.
-          </span>
+        <p className="mx-auto mt-2.5 whitespace-nowrap text-[0.68rem] leading-none text-stone-300/90 sm:mt-3 sm:text-[0.85rem] lg:text-[0.9rem]">
+          Simple to start today, powerful as your library grows.
         </p>
       </div>
 
-      <div className="mx-auto mt-5 w-full max-w-sm space-y-2.5 sm:mt-7 sm:max-w-lg sm:space-y-3 md:mt-8 md:max-w-2xl lg:mt-10 lg:max-w-4xl lg:space-y-4">
+      <div className="mx-auto mt-5 w-full max-w-sm space-y-2 sm:mt-7 sm:max-w-lg sm:space-y-2.5 md:mt-8 md:max-w-2xl lg:mt-9 lg:max-w-3xl lg:space-y-3">
         {faqs.map((faq, index) => {
           const isOpen = openIndex === index;
 
           return (
             <motion.div
               key={faq.question}
-              {...reveal({ delay: index * 0.06 })}
-              className={`overflow-hidden rounded-2xl border backdrop-blur-xl transition duration-300 sm:rounded-[1.6rem] ${
+              {...reveal({ delay: index * 0.05 })}
+              className={`rounded-[1.25rem] border backdrop-blur-xl transition-[border-color,background-color,box-shadow] duration-300 sm:rounded-[1.4rem] ${
                 isOpen
-                  ? "border-violet-300/28 bg-white/14 shadow-[0_24px_52px_rgba(76,29,149,0.16)]"
-                  : "border-white/12 bg-white/8 shadow-[0_16px_36px_rgba(0,0,0,0.12)]"
+                  ? "border-violet-300/28 bg-white/14 shadow-[0_20px_44px_rgba(76,29,149,0.14)]"
+                  : "border-white/12 bg-white/8 shadow-[0_14px_32px_rgba(0,0,0,0.12)]"
               }`}
             >
               <button
+                type="button"
+                aria-expanded={isOpen}
                 onClick={() => setOpenIndex(isOpen ? null : index)}
-                className="flex w-full items-center justify-between gap-3 px-3.5 py-3 text-left transition hover:bg-white/5 sm:gap-4 sm:px-4 sm:py-3.5 md:gap-6 md:px-5 md:py-4 lg:px-6 lg:py-5"
+                className="flex w-full cursor-pointer items-center justify-between gap-3 px-3.5 py-3 text-left transition-colors duration-200 hover:bg-white/5 sm:gap-4 sm:px-4 sm:py-3.5 md:px-5 md:py-4"
               >
-                <span className="text-[0.82rem] font-medium tracking-tight text-white sm:text-sm md:text-base lg:text-lg">
-                  <span className="md:hidden">{faq.mobileQuestion}</span>
-                  <span className="hidden md:inline">{faq.question}</span>
+                <span className="text-[0.88rem] font-medium leading-snug tracking-[-0.01em] text-white sm:text-[0.95rem] md:text-[1rem]">
+                  <span className="sm:hidden">{faq.mobileQuestion}</span>
+                  <span className="hidden sm:inline">{faq.question}</span>
                 </span>
                 <span
-                  className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-full border text-sm transition duration-300 sm:h-8 sm:w-8 md:h-9 md:w-9 md:text-base lg:text-lg ${
+                  aria-hidden="true"
+                  className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-full border text-sm transition-all duration-300 sm:h-8 sm:w-8 ${
                     isOpen
                       ? "rotate-45 border-violet-300/30 bg-violet-400/16 text-violet-200"
-                      : "border-white/14 bg-white/8 text-stone-200"
+                      : "rotate-0 border-white/14 bg-white/8 text-stone-200"
                   }`}
                 >
                   +
@@ -109,31 +107,29 @@ export function ProductFAQSection() {
               </button>
 
               <div
-                className={`overflow-hidden px-3.5 transition-all duration-300 sm:px-4 md:px-5 lg:px-6 ${
-                  isOpen ? "max-h-44 pb-3.5 sm:max-h-52 sm:pb-4 md:max-h-60 md:pb-5 lg:max-h-64" : "max-h-0"
-                }`}
+                className={`grid transition-[grid-template-rows] ease-out ${
+                  reduceMotion ? "duration-0" : "duration-300"
+                } ${isOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]"}`}
               >
-                <p className="max-w-3xl text-[0.72rem] leading-5 text-stone-200/82 sm:text-xs sm:leading-6 md:text-sm md:leading-7 lg:text-[0.98rem]">
-                  <span className="md:hidden">{faq.mobileAnswer}</span>
-                  <span className="hidden md:inline">{faq.answer}</span>
-                </p>
+                <div className="min-h-0 overflow-hidden">
+                  <p className="max-w-2xl px-3.5 pb-3.5 text-[0.8rem] leading-6 text-stone-300/88 sm:px-4 sm:pb-4 sm:text-[0.88rem] sm:leading-7 md:px-5 md:pb-4.5 md:text-[0.92rem]">
+                    <span className="sm:hidden">{faq.mobileAnswer}</span>
+                    <span className="hidden sm:inline">{faq.answer}</span>
+                  </p>
+                </div>
               </div>
             </motion.div>
           );
         })}
       </div>
 
-      <div className="mt-5 text-center sm:mt-7 md:mt-8 lg:mt-10">
-        <p className="text-xs tracking-tight text-white/92 sm:text-sm md:text-base lg:text-lg">
-          <span className="md:hidden">
+      <div className="mt-5 text-center sm:mt-7 md:mt-8">
+        <p className="text-[0.8rem] tracking-tight text-stone-200/90 sm:text-[0.9rem] md:text-[0.95rem]">
+          <span className="sm:hidden">
             Save first.
             <span className="ml-1 text-violet-300">Think later.</span>
           </span>
-          <span className="hidden md:inline lg:hidden">
-            Concious starts as a place to save.
-            <span className="ml-1 text-violet-300">It grows into a place to think.</span>
-          </span>
-          <span className="hidden lg:inline">
+          <span className="hidden sm:inline">
             Concious starts as a place to save.
             <span className="ml-1 text-violet-300">It grows into a place to think.</span>
           </span>

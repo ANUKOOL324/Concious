@@ -46,9 +46,11 @@ export function DashboardSidebar({
   return (
     <>
       <div
-        className={`flex items-center justify-between gap-3 border-b px-4 py-3 backdrop-blur-xl lg:hidden ${shellClass}`}
+        className={`flex min-w-0 max-w-full items-center justify-between gap-2 overflow-hidden border-b px-3 py-2.5 backdrop-blur-xl sm:gap-3 sm:px-4 sm:py-3 lg:hidden ${shellClass}`}
       >
-        <BrandLogo darkMode={darkMode} size="sm" onClick={onGoHome} />
+        <div className="min-w-0 flex-1 overflow-hidden">
+          <BrandLogo darkMode={darkMode} size="sm" onClick={onGoHome} />
+        </div>
         <SidebarToggleButton
           darkMode={darkMode}
           expanded={sidebarOpen}

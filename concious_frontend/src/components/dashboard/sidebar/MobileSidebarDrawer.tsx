@@ -2,6 +2,8 @@ import { SidebarFilterList } from "./SidebarFilterList";
 import { BrandLogo } from "./BrandLogo";
 import { SidebarUserProfile } from "./SidebarUserProfile";
 import { ThemeToggle } from "../header/ThemeToggle";
+import { CrossIcon } from "../../../Icon/CrossIcon";
+import { contentModalCloseButtonClass } from "../../content/contentModalStyles";
 import type { FilterType } from "../../../types/content";
 
 interface MobileSidebarDrawerProps {
@@ -61,22 +63,9 @@ export function MobileSidebarDrawer({
             type="button"
             onClick={onClose}
             aria-label="Close sidebar"
-            className={`rounded-xl p-2 transition ${
-              darkMode
-                ? "text-stone-400 hover:bg-white/8 hover:text-stone-100"
-                : "text-stone-500 hover:bg-stone-100 hover:text-stone-800"
-            }`}
+            className={contentModalCloseButtonClass(darkMode)}
           >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="1.8"
-              className="h-5 w-5"
-            >
-              <path strokeLinecap="round" strokeLinejoin="round" d="M6 6l12 12M18 6 6 18" />
-            </svg>
+            <CrossIcon />
           </button>
         </div>
 

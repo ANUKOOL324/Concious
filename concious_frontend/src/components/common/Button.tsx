@@ -1,4 +1,5 @@
-import { useRef, type ReactElement } from "react";
+import type { ReactElement } from "react";
+import { playSound, playUiClickSound } from "../../HelperFunction/sounds";
 
 interface ButtonProps {
   variety: "Primary" | "Secondary" | "Tri" | "Sign";
@@ -6,6 +7,7 @@ interface ButtonProps {
   StartIcon?: ReactElement;
   onClose?: () => void;
   soundSrc?: string;
+  withSound?: boolean;
   fullWidth?: boolean;
   Loading?: boolean;
   ProvoFunc?: () => void;
@@ -31,33 +33,33 @@ export function Button({
   StartIcon,
   onClose,
   soundSrc,
+  withSound = false,
   fullWidth,
   Loading,
   ProvoFunc,
   TypeFunc,
   className,
 }: ButtonProps) {
-  const audioRef = useRef<HTMLAudioElement | null>(null);
-
-  const playSound = () => {
-    audioRef.current?.play();
+  const playClick = () => {
+    if (soundSrc) {
+      playSound(soundSrc);
+    } else if (withSound) {
+      playUiClickSound();
+    }
     onClose?.();
     ProvoFunc?.();
     TypeFunc?.();
   };
 
   return (
-    <>
-      {soundSrc && <audio ref={audioRef} src={soundSrc} preload="auto" />}
-      <button
-        type="button"
-        aria-label={text}
-        className={`${BASE} ${variantClasses[variety]}${fullWidth ? " w-full" : ""} ${className ?? ""}`}
-        onClick={playSound}
-      >
-        {StartIcon && <span className="shrink-0 [&_svg]:size-4">{StartIcon}</span>}
-        <span>{Loading ? "Loading..." : text}</span>
-      </button>
-    </>
+    <button
+      type="button"
+      aria-label={text}
+      className={`${BASE} ${variantClasses[variety]}${fullWidth ? " w-full" : ""} ${className ?? ""}`}
+      onClick={playClick}
+    >
+      {StartIcon && <span className="shrink-0 [&_svg]:size-4">{StartIcon}</span>}
+      <span>{Loading ? "Loading..." : text}</span>
+    </button>
   );
 }

@@ -72,22 +72,13 @@ export function Section2() {
             <p className="inline-flex rounded-full border border-white/20 bg-white/8 px-3 py-1.5 text-[0.58rem] uppercase tracking-[0.2em] text-stone-100/85 backdrop-blur-md sm:px-4 sm:py-2 sm:text-[0.68rem] md:text-[0.72rem] md:tracking-[0.28em]">
               Built for clarity
             </p>
-            <h2 className="mt-3 text-[1.75rem] font-semibold leading-[1.02] tracking-[-0.05em] text-white sm:mt-4 sm:text-4xl md:mt-5 md:text-[2.6rem] lg:text-5xl lg:text-[3.7rem] lg:tracking-[-0.06em]">
+            <h2 className="mt-3 text-[1.65rem] font-semibold leading-[1.05] tracking-[-0.05em] text-white sm:mt-4 sm:text-[2.15rem] md:mt-5 md:text-[2.45rem] lg:text-[2.95rem] lg:tracking-[-0.06em]">
               <span className="sm:hidden">Features that feel light</span>
               <span className="hidden sm:inline lg:hidden">Features built for clarity</span>
               <span className="hidden lg:inline">Features that make remembering feel light</span>
             </h2>
-            <p className="mx-auto mt-3 max-w-2xl text-xs leading-6 text-stone-200/90 sm:text-sm sm:leading-6 md:mt-4 md:text-[0.95rem] md:leading-7 lg:text-base">
-              <span className="sm:hidden">
-                Capture signal, find it fast, and build healthier consumption habits.
-              </span>
-              <span className="hidden sm:inline lg:hidden">
-                Capture signal, retrieve it fast, and build healthier consumption habits.
-              </span>
-              <span className="hidden lg:inline">
-                A second-brain flow designed to capture signal, retrieve it fast,
-                and build healthier patterns around what you consume.
-              </span>
+            <p className="mx-auto mt-3 whitespace-nowrap text-[0.68rem] leading-none text-stone-200/90 sm:text-[0.85rem] md:mt-4 md:text-[0.9rem] lg:text-[0.95rem]">
+              Capture signal, find it fast, build healthier habits.
             </p>
           </div>
 
@@ -96,7 +87,7 @@ export function Section2() {
               <motion.div
                 key={card.title}
                 {...reveal({ delay: index * 0.1, lift: 6 })}
-                className={`group relative mx-auto w-full min-w-0 overflow-hidden rounded-2xl border border-white/16 bg-white/10 p-3 text-white shadow-[0_14px_32px_rgba(0,0,0,0.14)] backdrop-blur-xl transition-colors duration-300 hover:bg-white/14 sm:p-3.5 md:mx-0 md:rounded-[1.55rem] md:p-4 lg:rounded-[1.75rem] lg:p-5 ${
+                className={`group relative mx-auto w-full min-w-0 cursor-default overflow-hidden rounded-2xl border border-white/16 bg-white/10 p-3 text-white shadow-[0_14px_32px_rgba(0,0,0,0.14)] backdrop-blur-xl transition-colors duration-300 hover:bg-white/14 sm:p-3.5 md:mx-0 md:rounded-[1.55rem] md:p-4 lg:rounded-[1.75rem] lg:p-5 ${
                   index === 2
                     ? "md:col-span-2 md:max-w-[18rem] md:justify-self-center lg:col-span-1 lg:max-w-none"
                     : ""
@@ -142,8 +133,9 @@ export function Section2() {
           >
             <Nbutton
               onClose={() => navigate("/Why")}
+              withSound
               text="Why Concious?"
-              css="rounded-full border border-white/24 bg-white/10 px-6 py-2.5 text-sm font-semibold text-white shadow-[0_14px_32px_rgba(0,0,0,0.14)] backdrop-blur-md transition duration-200 hover:-translate-y-0.5 hover:bg-white/16 hover:border-white/36 active:translate-y-[1px] sm:px-8 sm:py-3 sm:text-base"
+              css="cursor-pointer rounded-full border border-white/24 bg-white/10 px-6 py-2.5 text-sm font-semibold text-white shadow-[0_14px_32px_rgba(0,0,0,0.14)] backdrop-blur-md transition duration-200 hover:-translate-y-0.5 hover:bg-white/16 hover:border-white/36 active:translate-y-[1px] sm:px-8 sm:py-3 sm:text-base"
             />
           </motion.div>
         </div>

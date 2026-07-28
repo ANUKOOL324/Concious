@@ -13,18 +13,20 @@ export function BrandLogo({
   size = "lg",
   iconOnly = false,
 }: BrandLogoProps) {
-  const textSize = size === "sm" ? "text-2xl" : "text-[2rem] sm:text-3xl";
+  const textSize = size === "sm" ? "text-xl sm:text-2xl" : "text-[1.7rem] sm:text-3xl";
 
   return (
     <div
       onClick={onClick}
-      className={`flex select-none items-center gap-2 ${
+      className={`flex min-w-0 select-none items-center gap-1.5 sm:gap-2 ${
         onClick ? "cursor-pointer" : ""
       }`}
     >
-      <Briansvg darkMode={darkMode} />
+      <span className="shrink-0">
+        <Briansvg darkMode={darkMode} />
+      </span>
       {!iconOnly && (
-        <div className={`flex ${textSize}`}>
+        <div className={`min-w-0 truncate ${textSize}`}>
           <span className={darkMode ? "text-stone-100" : "text-black"}>Conc</span>
           <span style={{ color: "#8d80bc" }}>ious</span>
         </div>

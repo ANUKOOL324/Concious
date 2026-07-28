@@ -156,7 +156,7 @@ function Dashboard() {
         />
       )}
 
-      <div className="flex h-full min-h-0 flex-col lg:flex-row">
+      <div className="flex h-full min-h-0 w-full max-w-full flex-col overflow-x-hidden lg:flex-row">
         <DashboardSidebar
           darkMode={darkMode}
           sidebarOpen={sidebarOpen}
@@ -169,7 +169,7 @@ function Dashboard() {
           onLogout={handleLogout}
         />
 
-        <div className="relative z-10 flex min-h-0 min-w-0 flex-1 flex-col px-3 py-3 sm:px-4 lg:px-5 lg:py-4">
+        <div className="relative z-10 flex min-h-0 min-w-0 max-w-full flex-1 flex-col px-2.5 py-2.5 sm:px-4 sm:py-3 lg:px-5 lg:py-4">
           <DashboardHeader
             darkMode={darkMode}
             shareOpen={shareOpen}
@@ -180,20 +180,22 @@ function Dashboard() {
             onToggleShare={() => setShareOpen((isOpen) => !isOpen)}
           />
 
-          {!isLoading && hasContent && (
-            <ContentSortBar
-              darkMode={darkMode}
-              sortOrder={sortOrder}
-              onSortOrderChange={setSortOrder}
-            />
-          )}
+          <div className="relative z-0 min-h-0 min-w-0 flex-1 overflow-x-hidden">
+            {!isLoading && hasContent && (
+              <ContentSortBar
+                darkMode={darkMode}
+                sortOrder={sortOrder}
+                onSortOrderChange={setSortOrder}
+              />
+            )}
 
-          <ContentGrid
-            items={filteredData}
-            isLoading={isLoading}
-            hasError={!!error}
-            darkMode={darkMode}
-          />
+            <ContentGrid
+              items={filteredData}
+              isLoading={isLoading}
+              hasError={!!error}
+              darkMode={darkMode}
+            />
+          </div>
         </div>
       </div>
     </DashboardLayout>

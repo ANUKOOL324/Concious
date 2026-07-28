@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { playUiClickSound } from "../../../HelperFunction/sounds";
 
 interface SidebarToggleButtonProps {
   darkMode: boolean;
@@ -35,44 +35,35 @@ export function SidebarToggleButton({
   controlsId,
   placement = "inline",
 }: SidebarToggleButtonProps) {
-  const audioRef = useRef<HTMLAudioElement | null>(null);
-
   function handleClick() {
-    audioRef.current?.play();
+    playUiClickSound();
     onClick();
   }
 
   const isEdge = placement === "edge";
 
   return (
-    <>
-      <audio
-        ref={audioRef}
-        src="src/assets/mixkit-retro-game-notification-212.wav"
-        preload="auto"
-      />
-      <button
-        type="button"
-        onClick={handleClick}
-        aria-expanded={expanded}
-        aria-controls={controlsId}
-        aria-label={expanded ? "Collapse sidebar" : "Expand sidebar"}
-        className={`flex cursor-pointer items-center justify-center border transition-all duration-200 hover:shadow-md active:scale-95 ${
-          isEdge
-            ? `absolute bottom-36 right-0 z-40 size-7 translate-x-1/2 -translate-y-1/2 rounded-full ${
-                darkMode
-                  ? "border-white/12 bg-[#141820] text-stone-200 shadow-black/40 hover:bg-[#1a2030]"
-                  : "border-stone-200 bg-white text-stone-600 shadow-stone-300/50 hover:bg-stone-50"
-              }`
-            : `size-9 rounded-xl ${
-                darkMode
-                  ? "border-white/10 bg-white/6 text-stone-200 hover:bg-white/10"
-                  : "border-stone-200/90 bg-white/85 text-stone-600 hover:bg-white"
-              }`
-        }`}
-      >
-        <ChevronIcon direction={expanded ? "left" : "right"} />
-      </button>
-    </>
+    <button
+      type="button"
+      onClick={handleClick}
+      aria-expanded={expanded}
+      aria-controls={controlsId}
+      aria-label={expanded ? "Collapse sidebar" : "Expand sidebar"}
+      className={`flex cursor-pointer items-center justify-center border transition-all duration-200 hover:shadow-md active:scale-95 ${
+        isEdge
+          ? `absolute bottom-36 right-0 z-40 size-7 translate-x-1/2 -translate-y-1/2 rounded-full ${
+              darkMode
+                ? "border-white/12 bg-[#141820] text-stone-200 shadow-black/40 hover:bg-[#1a2030]"
+                : "border-stone-200 bg-white text-stone-600 shadow-stone-300/50 hover:bg-stone-50"
+            }`
+          : `size-9 rounded-xl ${
+              darkMode
+                ? "border-white/10 bg-white/6 text-stone-200 hover:bg-white/10"
+                : "border-stone-200/90 bg-white/85 text-stone-600 hover:bg-white"
+            }`
+      }`}
+    >
+      <ChevronIcon direction={expanded ? "left" : "right"} />
+    </button>
   );
 }

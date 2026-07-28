@@ -11,6 +11,8 @@ import { Section4 } from "../sections/section4";
 import { Section5 } from "../sections/section5";
 import Navbar from "../components/layout/Navbar";
 import { useScrollReveal } from "../components/common/useScrollReveal";
+import { Briansvg } from "../Icon/Brainsvg";
+import { AMBIENT_PIANO_SOUND } from "../HelperFunction/sounds";
 
 const MEMORY_CORE_ORIGIN = "400 300";
 
@@ -155,7 +157,11 @@ function Main() {
   }, [isOpen, isAnimating]);
 
   useEffect(() => {
-    audioRef.current?.play().catch(() => {});
+    const audio = audioRef.current;
+    if (!audio) return;
+
+    audio.currentTime = 0;
+    void audio.play().catch(() => {});
   }, []);
 
   const handleToggle = () => {
@@ -183,7 +189,7 @@ function Main() {
 
   return (
     <div className="min-h-screen bg-stone-100 text-stone-950 select-none">
-      <audio ref={audioRef} src="piano.mp3" preload="auto" />
+      <audio ref={audioRef} src={AMBIENT_PIANO_SOUND} preload="auto" />
       <Navbar />
 
       <section
@@ -229,14 +235,14 @@ function Main() {
                 onClick={() =>
                   islogin ? navigate("/dashboard") : navigate("/signup")
                 }
-                className="rounded-full border border-stone-950/80 bg-stone-950/96 px-3.5 py-2 text-[0.72rem] font-semibold text-white shadow-[0_12px_24px_rgba(15,23,42,0.14)] transition-colors duration-200 font-['Manrope',sans-serif] hover:bg-stone-900 sm:px-7 sm:py-3 sm:text-[0.98rem] sm:shadow-[0_16px_34px_rgba(15,23,42,0.16)]"
+                className="cursor-pointer rounded-full border border-stone-950/80 bg-stone-950/96 px-3.5 py-2 text-[0.72rem] font-semibold text-white shadow-[0_12px_24px_rgba(15,23,42,0.14)] transition-colors duration-200 font-['Manrope',sans-serif] hover:bg-stone-900 sm:px-7 sm:py-3 sm:text-[0.98rem] sm:shadow-[0_16px_34px_rgba(15,23,42,0.16)]"
               >
                 {islogin ? "Open Dashboard" : "Get Started"}
               </motion.button>
               <motion.a
                 {...reveal({ delay: 0.12, lift: 3 })}
                 href="#features"
-                className="rounded-full border border-white/80 bg-white/58 px-3.5 py-2 text-center text-[0.72rem] font-semibold text-stone-800 shadow-[0_10px_22px_rgba(15,23,42,0.06)] backdrop-blur-md transition-colors duration-200 font-['Manrope',sans-serif] hover:border-violet-200 hover:bg-white/78 hover:text-violet-600 sm:px-7 sm:py-3 sm:text-[0.98rem] sm:shadow-[0_12px_28px_rgba(15,23,42,0.07)]"
+                className="cursor-pointer rounded-full border border-white/80 bg-white/58 px-3.5 py-2 text-center text-[0.72rem] font-semibold text-stone-800 shadow-[0_10px_22px_rgba(15,23,42,0.06)] backdrop-blur-md transition-colors duration-200 font-['Manrope',sans-serif] hover:border-violet-200 hover:bg-white/78 hover:text-violet-600 sm:px-7 sm:py-3 sm:text-[0.98rem] sm:shadow-[0_12px_28px_rgba(15,23,42,0.07)]"
               >
                 Explore Features
               </motion.a>
@@ -247,7 +253,7 @@ function Main() {
                 <motion.div
                   key={card.eyebrow}
                   {...reveal({ delay: 0.2 + index * 0.08, lift: 4 })}
-                  className="group relative flex min-w-0 flex-col items-start gap-1 overflow-hidden rounded-xl border border-white/75 bg-white/45 px-2 py-2 text-left shadow-[0_8px_18px_rgba(15,23,42,0.05)] backdrop-blur-md transition-colors duration-300 hover:bg-white/62 sm:gap-1.5 sm:rounded-2xl sm:px-3.5 sm:py-3 sm:shadow-[0_10px_24px_rgba(15,23,42,0.06)] md:px-3 md:py-3 lg:rounded-[1.9rem] lg:p-4 lg:shadow-[0_14px_34px_rgba(15,23,42,0.07)]"
+                  className="group relative flex min-w-0 cursor-default flex-col items-start gap-1 overflow-hidden rounded-xl border border-white/75 bg-white/45 px-2 py-2 text-left shadow-[0_8px_18px_rgba(15,23,42,0.05)] backdrop-blur-md transition-colors duration-300 hover:bg-white/62 sm:gap-1.5 sm:rounded-2xl sm:px-3.5 sm:py-3 sm:shadow-[0_10px_24px_rgba(15,23,42,0.06)] md:px-3 md:py-3 lg:rounded-[1.9rem] lg:p-4 lg:shadow-[0_14px_34px_rgba(15,23,42,0.07)]"
                 >
                   <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(255,255,255,0.55),transparent_42%)] opacity-70 transition duration-300 group-hover:opacity-100" />
                   <p className="relative z-10 text-[0.52rem] font-medium uppercase tracking-[0.12em] text-stone-400/90 font-['IBM_Plex_Mono',monospace] sm:text-[0.68rem] sm:tracking-[0.18em] lg:text-[0.72rem] lg:tracking-[0.22em]">
@@ -346,16 +352,18 @@ function Main() {
       >
         <div className="mx-auto w-full max-w-7xl">
           <div className="flex w-full flex-col gap-4 sm:gap-5 lg:flex-row lg:items-start lg:justify-between lg:gap-12 xl:gap-16">
-            <div className="w-full text-center lg:max-w-[15rem] lg:shrink-0 lg:text-left xl:max-w-[16rem]">
-              <h4 className="text-sm font-bold tracking-[-0.04em] text-violet-500 sm:text-base">
-                CONCIOUS
-              </h4>
-              <p className="mx-auto mt-1 max-w-xs text-[0.65rem] leading-[1.4] text-stone-600 sm:mt-1.5 sm:text-[0.7rem] md:text-xs md:leading-relaxed lg:mx-0 lg:max-w-none lg:text-[0.72rem] lg:leading-[1.45]">
-                <span className="md:hidden">Store, revisit, and share what matters.</span>
-                <span className="hidden md:inline">
-                  Your digital consciousness, expanded into a calmer place to
-                  store, revisit, and share what matters.
+            <div className="w-full text-center lg:max-w-[22rem] lg:shrink-0 lg:text-left xl:max-w-[24rem]">
+              <div className="inline-flex items-center justify-center gap-2 lg:justify-start">
+                <span className="shrink-0 [&_svg]:h-7 [&_svg]:w-7 sm:[&_svg]:h-8 sm:[&_svg]:w-8">
+                  <Briansvg />
                 </span>
+                <h4 className="text-sm font-bold tracking-[-0.04em] sm:text-base">
+                  <span className="text-stone-950">Conc</span>
+                  <span className="text-violet-500">ious</span>
+                </h4>
+              </div>
+              <p className="mx-auto mt-1 max-w-xs text-[0.65rem] leading-[1.4] text-stone-600 sm:mt-1.5 sm:text-[0.7rem] md:text-xs md:leading-relaxed lg:mx-0 lg:max-w-none lg:whitespace-nowrap lg:text-[0.72rem] lg:leading-[1.45]">
+                A calmer second brain to save and revisit what matters.
               </p>
             </div>
 
@@ -366,17 +374,17 @@ function Main() {
                 </h5>
                 <ul className="mt-1 space-y-0.5 text-[0.62rem] leading-[1.3] text-stone-600 sm:mt-1.5 sm:space-y-1 sm:text-[0.68rem] md:mt-2 md:space-y-1.5 md:text-xs lg:text-[0.72rem] lg:leading-[1.4]">
                   <li>
-                    <a href="#features" className="inline-block py-0.5 transition hover:text-violet-600">
+                    <a href="#features" className="inline-block cursor-pointer py-0.5 transition hover:text-violet-600">
                       Features
                     </a>
                   </li>
                   <li>
-                    <a href="#pricing" className="inline-block py-0.5 transition hover:text-violet-600">
+                    <a href="#pricing" className="inline-block cursor-pointer py-0.5 transition hover:text-violet-600">
                       Pricing
                     </a>
                   </li>
                   <li>
-                    <a href="#faqs" className="inline-block py-0.5 transition hover:text-violet-600">
+                    <a href="#faqs" className="inline-block cursor-pointer py-0.5 transition hover:text-violet-600">
                       FAQs
                     </a>
                   </li>
@@ -390,19 +398,19 @@ function Main() {
                 </h5>
                 <ul className="mt-1 space-y-0.5 text-[0.62rem] leading-[1.3] text-stone-600 sm:mt-1.5 sm:space-y-1 sm:text-[0.68rem] md:mt-2 md:space-y-1.5 md:text-xs lg:text-[0.72rem] lg:leading-[1.4]">
                   <li>
-                    <a href="#testimonial" className="inline-block py-0.5 transition hover:text-violet-600">
+                    <a href="#testimonial" className="inline-block cursor-pointer py-0.5 transition hover:text-violet-600">
                       <span className="md:hidden">Stories</span>
                       <span className="hidden md:inline">Testimonials</span>
                     </a>
                   </li>
                   <li>
-                    <a href="#features" className="inline-block py-0.5 transition hover:text-violet-600">
+                    <a href="#features" className="inline-block cursor-pointer py-0.5 transition hover:text-violet-600">
                       <span className="md:hidden">Vault</span>
                       <span className="hidden md:inline">Knowledge Vault</span>
                     </a>
                   </li>
                   <li>
-                    <a href="#Home" className="inline-block py-0.5 transition hover:text-violet-600">
+                    <a href="#Home" className="inline-block cursor-pointer py-0.5 transition hover:text-violet-600">
                       Hero
                     </a>
                   </li>
@@ -418,7 +426,7 @@ function Main() {
                   <li>
                     <button
                       onClick={() => navigate("/signup")}
-                      className="inline-block py-0.5 transition hover:text-violet-600"
+                      className="inline-block cursor-pointer py-0.5 transition hover:text-violet-600"
                     >
                       Sign up
                     </button>
@@ -426,7 +434,7 @@ function Main() {
                   <li>
                     <button
                       onClick={() => navigate("/signin")}
-                      className="inline-block py-0.5 transition hover:text-violet-600"
+                      className="inline-block cursor-pointer py-0.5 transition hover:text-violet-600"
                     >
                       Sign in
                     </button>
@@ -434,7 +442,7 @@ function Main() {
                   <li>
                     <button
                       onClick={() => navigate("/dashboard")}
-                      className="inline-block py-0.5 transition hover:text-violet-600"
+                      className="inline-block cursor-pointer py-0.5 transition hover:text-violet-600"
                     >
                       <span className="md:hidden">App</span>
                       <span className="hidden md:inline">Dashboard</span>

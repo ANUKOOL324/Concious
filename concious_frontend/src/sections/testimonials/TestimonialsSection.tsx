@@ -66,7 +66,7 @@ export function TestimonialsSection() {
         <p className="inline-flex rounded-full border border-white/16 bg-white/8 px-3 py-1.5 text-[0.58rem] uppercase tracking-[0.2em] text-stone-100/82 backdrop-blur-md sm:px-4 sm:py-2 sm:text-[0.68rem] md:text-[0.72rem] md:tracking-[0.28em]">
           Testimonials
         </p>
-        <h2 className="mt-1 max-w-[16ch] text-[1.75rem] font-semibold leading-[1.02] tracking-[-0.05em] text-white sm:max-w-none sm:text-4xl md:text-[2.6rem] lg:text-[3.45rem] lg:tracking-[-0.07em]">
+        <h2 className="mt-1 max-w-[16ch] text-[1.65rem] font-semibold leading-[1.05] tracking-[-0.05em] text-white sm:max-w-none sm:text-[2.15rem] md:text-[2.45rem] lg:text-[2.95rem] lg:tracking-[-0.06em]">
           <span className="sm:hidden">People feel the difference</span>
           <span className="hidden sm:inline lg:hidden">
             People using Concious feel the difference
@@ -76,21 +76,9 @@ export function TestimonialsSection() {
             <span className="block pt-2 text-[0.88em]">feel the difference</span>
           </span>
         </h2>
-        <p className="mt-2 max-w-[46rem] px-2 text-xs leading-6 text-stone-200/88 sm:px-0 sm:text-sm sm:leading-6 md:mt-3 md:text-[0.95rem] md:leading-7 lg:text-base">
-          <span className="sm:hidden">
-            Clearer thinking and a calmer relationship with the internet.
-          </span>
-          <span className="hidden sm:inline lg:hidden">
-            Intentional content, clearer thinking, and a calmer relationship with the internet.
-          </span>
-          <span className="hidden lg:inline">
-            Intentional content. Clearer thinking. A calmer relationship with the
-            internet, reflected back by the people using it.
-          </span>
-        </p>
       </div>
 
-      <div className="mt-5 sm:mt-7 md:mt-8">
+      <div className="mt-8 sm:mt-11 md:mt-12">
         <MovingRow testimonials={testimonials} direction="left" />
       </div>
 

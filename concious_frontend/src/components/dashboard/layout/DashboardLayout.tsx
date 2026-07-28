@@ -8,7 +8,7 @@ interface DashboardLayoutProps {
 export function DashboardLayout({ darkMode, children }: DashboardLayoutProps) {
   return (
     <div
-      className={`h-dvh overflow-hidden ${
+      className={`h-dvh w-full max-w-[100vw] overflow-x-hidden overflow-y-hidden ${
         darkMode
           ? "bg-[radial-gradient(circle_at_top,rgba(120,119,198,0.18),transparent_24%),linear-gradient(180deg,#090a0f_0%,#0c0e14_42%,#11131a_100%)]"
           : "bg-[radial-gradient(circle_at_top,rgba(141,128,188,0.15),transparent_30%),linear-gradient(180deg,#ffffff_0%,#f8f8fb_45%,#f3f4f6_100%)]"

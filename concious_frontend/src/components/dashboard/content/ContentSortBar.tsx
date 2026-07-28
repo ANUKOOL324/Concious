@@ -17,7 +17,7 @@ export function ContentSortBar({
   onSortOrderChange,
 }: ContentSortBarProps) {
   return (
-    <div className="mt-4 flex items-center justify-end gap-2 sm:mt-5">
+    <div className="mt-4 flex min-w-0 max-w-full items-center justify-end gap-2 overflow-x-hidden sm:mt-5">
       <div
         role="group"
         aria-label="Sort saved content"

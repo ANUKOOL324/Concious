@@ -18,7 +18,7 @@ export default function WhyConscious() {
           <button
             type="button"
             onClick={() => navigate("/")}
-            className="group inline-flex items-center gap-3 rounded-full border border-white/80 bg-white/80 px-4 py-3 text-sm font-medium text-slate-800 shadow-[0_18px_45px_rgba(15,23,42,0.10)] backdrop-blur-xl transition-all duration-300 hover:-translate-y-0.5 hover:bg-white hover:shadow-[0_22px_55px_rgba(15,23,42,0.14)] active:translate-y-0"
+            className="group inline-flex cursor-pointer items-center gap-3 rounded-full border border-white/80 bg-white/80 px-4 py-3 text-sm font-medium text-slate-800 shadow-[0_18px_45px_rgba(15,23,42,0.10)] backdrop-blur-xl transition-all duration-300 hover:-translate-y-0.5 hover:bg-white hover:shadow-[0_22px_55px_rgba(15,23,42,0.14)] active:translate-y-0"
           >
             <span className="flex h-9 w-9 items-center justify-center rounded-full bg-slate-950 text-white transition-colors duration-300 group-hover:bg-violet-600">
               <BackIcon />
@@ -37,15 +37,16 @@ export default function WhyConscious() {
         <section className="relative overflow-hidden rounded-[2rem] border border-white/80 bg-white/65 shadow-[0_30px_90px_rgba(15,23,42,0.10)] backdrop-blur-xl">
           <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-violet-300/80 to-transparent" />
           <div className="relative px-3 py-3 sm:px-4 sm:py-4 lg:px-5 lg:py-5">
-            <div className="mb-6 flex flex-col gap-4 rounded-[1.5rem] border border-slate-200/70 bg-white/75 px-4 py-4 shadow-[0_16px_45px_rgba(15,23,42,0.06)] backdrop-blur sm:px-5 sm:py-5 lg:mb-8 lg:flex-row lg:items-end lg:justify-between">
-              <div className="max-w-2xl">
-                <p className="mb-2 text-[0.7rem] uppercase tracking-[0.35em] text-violet-500">
-                  Why Concious
-                </p>
-                <h1 className="text-balance text-2xl font-semibold tracking-tight text-slate-950 sm:text-3xl lg:text-[2.4rem]">
+            <div className="mb-6 flex flex-col gap-3 rounded-[1.5rem] border border-slate-200/70 bg-white/75 px-4 py-4 shadow-[0_16px_45px_rgba(15,23,42,0.06)] backdrop-blur sm:px-5 sm:py-5 lg:mb-8">
+              <p className="text-[0.68rem] uppercase tracking-[0.32em] text-violet-500 sm:text-[0.7rem] sm:tracking-[0.35em]">
+                Why Concious
+              </p>
+              <h1 className="whitespace-nowrap text-[0.95rem] font-semibold tracking-[-0.03em] text-slate-950 sm:text-2xl lg:text-[1.85rem] lg:tracking-[-0.04em]">
+                <span className="sm:hidden">A calmer story for digital attention.</span>
+                <span className="hidden sm:inline">
                   A calmer product story for how digital attention should feel.
-                </h1>
-              </div>
+                </span>
+              </h1>
             </div>
 
             <Collase />

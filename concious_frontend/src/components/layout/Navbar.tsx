@@ -87,8 +87,9 @@ const Navbar = () => {
         }`}
       >
         <button
+          type="button"
           onClick={() => navigate("/")}
-          className="flex min-w-0 items-center gap-1.5 text-left sm:gap-2"
+          className="flex min-w-0 cursor-pointer items-center gap-1.5 text-left sm:gap-2"
         >
           <span className="inline-flex shrink-0 [&_svg]:h-7 [&_svg]:w-7 sm:[&_svg]:h-8 sm:[&_svg]:w-8 lg:[&_svg]:h-9 lg:[&_svg]:w-9">
             <Briansvg />
@@ -108,7 +109,7 @@ const Navbar = () => {
                 ref={(el) => {
                   linkRefs.current[id] = el;
                 }}
-                className={`whitespace-nowrap transition ${
+                className={`cursor-pointer whitespace-nowrap transition ${
                   activeSection === id
                     ? "text-stone-950"
                     : "hover:text-violet-600"
@@ -131,13 +132,15 @@ const Navbar = () => {
             {isLogin ? (
               <>
                 <button
-                  className="rounded-full border border-stone-300 px-3.5 py-1.5 text-[0.8rem] font-semibold text-stone-900 transition hover:border-violet-300 hover:text-violet-600 xl:px-5 xl:py-2 xl:text-sm"
+                  type="button"
+                  className="cursor-pointer rounded-full border border-stone-300 px-3.5 py-1.5 text-[0.8rem] font-semibold text-stone-900 transition hover:border-violet-300 hover:text-violet-600 xl:px-5 xl:py-2 xl:text-sm"
                   onClick={() => navigate("/dashboard")}
                 >
                   Dashboard
                 </button>
                 <button
-                  className="rounded-full bg-stone-950 px-3.5 py-1.5 text-[0.8rem] font-semibold text-white transition hover:bg-stone-800 xl:px-5 xl:py-2 xl:text-sm"
+                  type="button"
+                  className="cursor-pointer rounded-full bg-stone-950 px-3.5 py-1.5 text-[0.8rem] font-semibold text-white transition hover:bg-stone-800 xl:px-5 xl:py-2 xl:text-sm"
                   onClick={handleLogout}
                 >
                   Logout
@@ -145,7 +148,8 @@ const Navbar = () => {
               </>
             ) : (
               <button
-                className="rounded-full bg-violet-500 px-3.5 py-1.5 text-[0.8rem] font-semibold text-white transition hover:bg-violet-600 xl:px-5 xl:py-2 xl:text-sm"
+                type="button"
+                className="cursor-pointer rounded-full bg-violet-500 px-3.5 py-1.5 text-[0.8rem] font-semibold text-white transition hover:bg-violet-600 xl:px-5 xl:py-2 xl:text-sm"
                 onClick={() => navigate("/signup")}
               >
                 Get Started
@@ -155,8 +159,9 @@ const Navbar = () => {
         </div>
 
         <button
+          type="button"
           onClick={() => setIsMenuOpen((prev) => !prev)}
-          className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-stone-300 bg-white text-stone-900 sm:h-10 sm:w-10 lg:hidden"
+          className="inline-flex h-9 w-9 shrink-0 cursor-pointer items-center justify-center rounded-full border border-stone-300 bg-white text-stone-900 sm:h-10 sm:w-10 lg:hidden"
           aria-label="Toggle navigation menu"
           aria-expanded={isMenuOpen}
         >

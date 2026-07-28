@@ -85,21 +85,12 @@ export function PricingSection() {
         <p className="inline-flex rounded-full border border-white/18 bg-white/8 px-3 py-1.5 text-[0.58rem] uppercase tracking-[0.2em] text-stone-100/84 backdrop-blur-md sm:px-4 sm:py-2 sm:text-[0.68rem] md:text-[0.72rem] md:tracking-[0.28em]">
           Pricing
         </p>
-        <h2 className="mt-3 text-[1.75rem] font-semibold leading-[1.02] tracking-[-0.05em] text-white sm:mt-4 sm:text-4xl md:mt-5 md:text-[2.6rem] lg:text-5xl lg:text-[3.7rem] lg:tracking-[-0.06em]">
+        <h2 className="mt-3 text-[1.65rem] font-semibold leading-[1.05] tracking-[-0.05em] text-white sm:mt-4 sm:text-[2.15rem] md:mt-5 md:text-[2.45rem] lg:text-[2.95rem] lg:tracking-[-0.06em]">
           Simple pricing for
           <span className="block text-violet-300">Concious</span>
         </h2>
-        <p className="mx-auto mt-3 max-w-2xl text-xs leading-6 text-stone-200/88 sm:text-sm sm:leading-6 md:mt-4 md:text-[0.95rem] md:leading-7 lg:text-base">
-          <span className="md:hidden">
-            Start free, then upgrade when Ashqnor becomes essential.
-          </span>
-          <span className="hidden md:inline lg:hidden">
-            Start free and upgrade when Ashqnor becomes essential to how you retrieve ideas.
-          </span>
-          <span className="hidden lg:inline">
-            Start free, build the habit, and upgrade when Ashqnor becomes essential
-            to how you think and retrieve what matters.
-          </span>
+        <p className="mx-auto mt-3 whitespace-nowrap text-[0.68rem] leading-none text-stone-200/88 sm:text-[0.85rem] md:mt-4 md:text-[0.9rem] lg:text-[0.95rem]">
+          Start free, upgrade when Ashqnor becomes essential.
         </p>
       </div>
 
@@ -108,7 +99,7 @@ export function PricingSection() {
           <motion.div
             key={plan.name}
             {...reveal({ delay: index * 0.1, lift: 6 })}
-            className={`relative flex flex-col overflow-hidden rounded-2xl border p-3.5 backdrop-blur-xl transition-colors duration-300 sm:p-4 md:rounded-[1.75rem] md:p-5 lg:rounded-[1.85rem] lg:p-7 ${
+            className={`relative flex cursor-default flex-col overflow-hidden rounded-2xl border p-3.5 backdrop-blur-xl transition-colors duration-300 sm:p-4 md:rounded-[1.75rem] md:p-5 lg:rounded-[1.85rem] lg:p-7 ${
               plan.featured
                 ? "border-violet-300/35 bg-[linear-gradient(180deg,_rgba(139,92,246,0.22)_0%,_rgba(255,255,255,0.08)_100%)] shadow-[0_24px_56px_rgba(76,29,149,0.22)]"
                 : "border-white/14 bg-white/10 shadow-[0_18px_40px_rgba(0,0,0,0.14)]"
@@ -176,7 +167,7 @@ export function PricingSection() {
 
             <motion.button
               whileTap={{ scale: 0.97 }}
-              className={`mt-4 w-full rounded-xl py-2.5 text-xs font-semibold transition-colors duration-200 sm:mt-5 md:mt-6 md:rounded-2xl md:py-3 md:text-sm lg:mt-8 ${
+              className={`mt-4 w-full cursor-pointer rounded-xl py-2.5 text-xs font-semibold transition-colors duration-200 sm:mt-5 md:mt-6 md:rounded-2xl md:py-3 md:text-sm lg:mt-8 ${
                 plan.featured
                   ? "bg-violet-500 text-white hover:bg-violet-400"
                   : "border border-white/16 bg-white/10 text-white hover:bg-white/16"

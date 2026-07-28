@@ -1,6 +1,25 @@
 @import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Manrope:wght@400;500;600;700;800&display=swap");
 @import 'tailwindcss';
 
+html,
+body,
+#root {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+button,
+a,
+[role="button"],
+summary {
+  cursor: pointer;
+}
+
+button:disabled,
+a[aria-disabled="true"] {
+  cursor: not-allowed;
+}
+
 .concious-scrollbar-light {
   scrollbar-width: thin;
   scrollbar-color: rgba(120, 113, 108, 0.45) transparent;

@@ -896,6 +896,7 @@ export function Card({
         </div>
         <div className="flex shrink-0 items-center gap-2">
           <Sbutton
+            withSound
             ProvoFunc={copyLink}
             css={
               darkMode
@@ -907,6 +908,7 @@ export function Card({
           {!readOnly && (
             <>
               <Sbutton
+                withSound
                 ProvoFunc={() => deleteMutation.mutate(_id)}
                 css={
                   darkMode
