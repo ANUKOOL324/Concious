@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { motion } from "framer-motion";
+import { useScrollReveal } from "../components/common/useScrollReveal";
 
 const faqs = [
   {
@@ -45,6 +47,7 @@ const faqs = [
 
 export function ProductFAQSection() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
+  const reveal = useScrollReveal();
 
   return (
     <section
@@ -77,8 +80,9 @@ export function ProductFAQSection() {
           const isOpen = openIndex === index;
 
           return (
-            <div
+            <motion.div
               key={faq.question}
+              {...reveal({ delay: index * 0.06 })}
               className={`overflow-hidden rounded-2xl border backdrop-blur-xl transition duration-300 sm:rounded-[1.6rem] ${
                 isOpen
                   ? "border-violet-300/28 bg-white/14 shadow-[0_24px_52px_rgba(76,29,149,0.16)]"
@@ -114,7 +118,7 @@ export function ProductFAQSection() {
                   <span className="hidden md:inline">{faq.answer}</span>
                 </p>
               </div>
-            </div>
+            </motion.div>
           );
         })}
       </div>

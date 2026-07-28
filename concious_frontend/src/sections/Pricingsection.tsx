@@ -1,3 +1,6 @@
+import { motion } from "framer-motion";
+import { useScrollReveal } from "../components/common/useScrollReveal";
+
 const pricingPlans = [
   {
     name: "Free",
@@ -71,6 +74,8 @@ const pricingPlans = [
 ];
 
 export function PricingSection() {
+  const reveal = useScrollReveal();
+
   return (
     <section
       id="pricing"
@@ -99,10 +104,11 @@ export function PricingSection() {
       </div>
 
       <div className="mx-auto mt-5 grid w-full max-w-sm gap-3 sm:mt-7 sm:max-w-md sm:gap-3.5 md:mt-8 md:max-w-3xl md:grid-cols-2 md:gap-4 lg:mt-10 lg:max-w-6xl lg:grid-cols-3">
-        {pricingPlans.map((plan) => (
-          <div
+        {pricingPlans.map((plan, index) => (
+          <motion.div
             key={plan.name}
-            className={`relative flex flex-col overflow-hidden rounded-2xl border p-3.5 backdrop-blur-xl transition duration-300 hover:-translate-y-1 hover:shadow-[0_26px_54px_rgba(0,0,0,0.18)] sm:p-4 md:rounded-[1.75rem] md:p-5 lg:rounded-[1.85rem] lg:p-7 ${
+            {...reveal({ delay: index * 0.1, lift: 6 })}
+            className={`relative flex flex-col overflow-hidden rounded-2xl border p-3.5 backdrop-blur-xl transition-colors duration-300 sm:p-4 md:rounded-[1.75rem] md:p-5 lg:rounded-[1.85rem] lg:p-7 ${
               plan.featured
                 ? "border-violet-300/35 bg-[linear-gradient(180deg,_rgba(139,92,246,0.22)_0%,_rgba(255,255,255,0.08)_100%)] shadow-[0_24px_56px_rgba(76,29,149,0.22)]"
                 : "border-white/14 bg-white/10 shadow-[0_18px_40px_rgba(0,0,0,0.14)]"
@@ -168,16 +174,17 @@ export function PricingSection() {
               ))}
             </ul>
 
-            <button
-              className={`mt-4 w-full rounded-xl py-2.5 text-xs font-semibold transition duration-200 sm:mt-5 md:mt-6 md:rounded-2xl md:py-3 md:text-sm lg:mt-8 ${
+            <motion.button
+              whileTap={{ scale: 0.97 }}
+              className={`mt-4 w-full rounded-xl py-2.5 text-xs font-semibold transition-colors duration-200 sm:mt-5 md:mt-6 md:rounded-2xl md:py-3 md:text-sm lg:mt-8 ${
                 plan.featured
                   ? "bg-violet-500 text-white hover:bg-violet-400"
                   : "border border-white/16 bg-white/10 text-white hover:bg-white/16"
               }`}
             >
               {plan.cta}
-            </button>
-          </div>
+            </motion.button>
+          </motion.div>
         ))}
       </div>
     </section>

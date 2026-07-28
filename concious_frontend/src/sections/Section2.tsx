@@ -1,7 +1,7 @@
-import { useEffect, useRef } from "react";
-import { gsap } from "gsap";
+import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import { Nbutton } from "../components/common/Nbutton";
+import { useScrollReveal } from "../components/common/useScrollReveal";
 
 const featureCards = [
   {
@@ -56,39 +56,7 @@ const featureCards = [
 
 export function Section2() {
   const navigate = useNavigate();
-  const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
-
-  useEffect(() => {
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      return;
-    }
-
-    const cards = cardRefs.current.filter(
-      (card): card is HTMLDivElement => card !== null
-    );
-
-    if (!cards.length) return;
-
-    const animation = gsap.fromTo(
-      cards,
-      {
-        opacity: 0,
-        y: 24,
-      },
-      {
-        opacity: 1,
-        y: 0,
-        duration: 0.7,
-        stagger: 0.1,
-        ease: "power3.out",
-        scrollTrigger: undefined,
-      }
-    );
-
-    return () => {
-      animation.kill();
-    };
-  }, []);
+  const reveal = useScrollReveal();
 
   return (
     <section id="features" className="bg-white px-3 py-3 sm:px-5 sm:py-4 md:px-6 lg:px-8">
@@ -125,12 +93,10 @@ export function Section2() {
 
           <div className="mx-auto mt-5 grid w-full max-w-[16.5rem] grid-cols-1 gap-2.5 sm:mt-7 sm:max-w-[18rem] sm:gap-3 md:mt-8 md:max-w-2xl md:grid-cols-2 md:gap-3.5 lg:mt-10 lg:max-w-5xl lg:grid-cols-3 lg:gap-4">
             {featureCards.map((card, index) => (
-              <div
+              <motion.div
                 key={card.title}
-                ref={(element) => {
-                  cardRefs.current[index] = element;
-                }}
-                className={`group relative mx-auto w-full min-w-0 overflow-hidden rounded-2xl border border-white/16 bg-white/10 p-3 text-white shadow-[0_14px_32px_rgba(0,0,0,0.14)] backdrop-blur-xl transition duration-300 hover:-translate-y-1 hover:bg-white/14 hover:shadow-[0_28px_54px_rgba(0,0,0,0.18)] sm:p-3.5 md:mx-0 md:rounded-[1.55rem] md:p-4 lg:rounded-[1.75rem] lg:p-5 lg:hover:-translate-y-1.5 ${
+                {...reveal({ delay: index * 0.1, lift: 6 })}
+                className={`group relative mx-auto w-full min-w-0 overflow-hidden rounded-2xl border border-white/16 bg-white/10 p-3 text-white shadow-[0_14px_32px_rgba(0,0,0,0.14)] backdrop-blur-xl transition-colors duration-300 hover:bg-white/14 sm:p-3.5 md:mx-0 md:rounded-[1.55rem] md:p-4 lg:rounded-[1.75rem] lg:p-5 ${
                   index === 2
                     ? "md:col-span-2 md:max-w-[18rem] md:justify-self-center lg:col-span-1 lg:max-w-none"
                     : ""
@@ -166,17 +132,20 @@ export function Section2() {
                     </li>
                   ))}
                 </ul>
-              </div>
+              </motion.div>
             ))}
           </div>
 
-          <div className="mt-5 flex justify-center sm:mt-8 lg:mt-10">
+          <motion.div
+            {...reveal({ delay: 0.15 })}
+            className="mt-5 flex justify-center sm:mt-8 lg:mt-10"
+          >
             <Nbutton
               onClose={() => navigate("/Why")}
               text="Why Concious?"
               css="rounded-full border border-white/24 bg-white/10 px-6 py-2.5 text-sm font-semibold text-white shadow-[0_14px_32px_rgba(0,0,0,0.14)] backdrop-blur-md transition duration-200 hover:-translate-y-0.5 hover:bg-white/16 hover:border-white/36 active:translate-y-[1px] sm:px-8 sm:py-3 sm:text-base"
             />
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>

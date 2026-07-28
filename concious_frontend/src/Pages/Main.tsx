@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
+import { motion } from "framer-motion";
 import { RadialGroup } from "../components/icons/RadialGroup";
 import { CenterBrand } from "../components/icons/LockIcon";
 import { useNavigate } from "react-router-dom";
@@ -9,8 +10,30 @@ import { Section3 } from "../sections/Section3";
 import { Section4 } from "../sections/section4";
 import { Section5 } from "../sections/section5";
 import Navbar from "../components/layout/Navbar";
+import { useScrollReveal } from "../components/common/useScrollReveal";
 
 const MEMORY_CORE_ORIGIN = "400 300";
+
+const heroCards = [
+  {
+    eyebrow: "Capture",
+    mobileText: "One place for everything.",
+    tabletText: "Save links and notes in one vault.",
+    desktopText: "One vault for links, videos, and notes.",
+  },
+  {
+    eyebrow: "Reflect",
+    mobileText: "Return to what matters.",
+    tabletText: "Return to what matters.",
+    desktopText: "Return to what matters.",
+  },
+  {
+    eyebrow: "Share",
+    mobileText: "Your brain, one link.",
+    tabletText: "Publish thinking in one link.",
+    desktopText: "Share your brain in one link.",
+  },
+];
 
 const TOGGLE_FILL_DURATION = 0.16;
 const TOGGLE_STAGGER_AMOUNT = 0.18;
@@ -27,11 +50,11 @@ function Main() {
   const [isAnimating, setIsAnimating] = useState(false);
   const navigate = useNavigate();
   const audioRef = useRef<HTMLAudioElement | null>(null);
-  const heroCardRefs = useRef<(HTMLDivElement | null)[]>([]);
   const radialGroupRef = useRef<SVGGElement | null>(null);
   const spinTweenRef = useRef<gsap.core.Tween | null>(null);
   const toggleTweenRef = useRef<gsap.core.Timeline | null>(null);
   const islogin = logged();
+  const reveal = useScrollReveal();
 
   const startSpinTween = (radial: SVGGElement) => {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
@@ -135,40 +158,6 @@ function Main() {
     audioRef.current?.play().catch(() => {});
   }, []);
 
-  useEffect(() => {
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      return;
-    }
-
-    const cards = heroCardRefs.current.filter(
-      (card): card is HTMLDivElement => card !== null
-    );
-
-    if (!cards.length) return;
-
-    const animation = gsap.fromTo(
-      cards,
-      {
-        opacity: 0,
-        y: 18,
-        scale: 0.985,
-      },
-      {
-        opacity: 1,
-        y: 0,
-        scale: 1,
-        duration: 0.55,
-        stagger: 0.08,
-        ease: "power3.out",
-        delay: 0.2,
-      }
-    );
-
-    return () => {
-      animation.kill();
-    };
-  }, []);
-
   const handleToggle = () => {
     if (isAnimating) return;
 
@@ -234,76 +223,47 @@ function Main() {
               <span className="text-violet-500">the moment it is tested.</span>
             </p>
 
-            <div className="mt-4 flex flex-col items-center gap-2.5 sm:mt-5 sm:flex-row sm:flex-wrap sm:justify-center sm:gap-3 md:mt-6 lg:items-start lg:justify-start">
-              <button
+            <div className="mt-4 flex flex-row items-center justify-center gap-2 sm:mt-5 sm:gap-3 md:mt-6 lg:justify-start">
+              <motion.button
+                {...reveal({ delay: 0.05, lift: 3 })}
                 onClick={() =>
                   islogin ? navigate("/dashboard") : navigate("/signup")
                 }
-                className="w-full rounded-full border border-stone-950/80 bg-stone-950/96 px-5 py-2.5 text-sm font-semibold text-white shadow-[0_16px_34px_rgba(15,23,42,0.16)] transition duration-200 font-['Manrope',sans-serif] hover:-translate-y-0.5 hover:bg-stone-900 hover:shadow-[0_20px_40px_rgba(15,23,42,0.2)] active:translate-y-px active:scale-[0.985] active:shadow-[0_8px_18px_rgba(15,23,42,0.14)] sm:w-auto sm:px-7 sm:py-3 sm:text-[0.98rem]"
+                className="rounded-full border border-stone-950/80 bg-stone-950/96 px-3.5 py-2 text-[0.72rem] font-semibold text-white shadow-[0_12px_24px_rgba(15,23,42,0.14)] transition-colors duration-200 font-['Manrope',sans-serif] hover:bg-stone-900 sm:px-7 sm:py-3 sm:text-[0.98rem] sm:shadow-[0_16px_34px_rgba(15,23,42,0.16)]"
               >
                 {islogin ? "Open Dashboard" : "Get Started"}
-              </button>
-              <a
+              </motion.button>
+              <motion.a
+                {...reveal({ delay: 0.12, lift: 3 })}
                 href="#features"
-                className="w-full rounded-full border border-white/80 bg-white/58 px-5 py-2.5 text-sm font-semibold text-stone-800 shadow-[0_12px_28px_rgba(15,23,42,0.07)] backdrop-blur-md transition duration-200 font-['Manrope',sans-serif] hover:-translate-y-0.5 hover:border-violet-200 hover:bg-white/78 hover:text-violet-600 hover:shadow-[0_18px_34px_rgba(15,23,42,0.1)] active:translate-y-px active:scale-[0.985] active:bg-white/68 active:shadow-[0_8px_18px_rgba(15,23,42,0.08)] sm:w-auto sm:px-7 sm:py-3 sm:text-[0.98rem]"
+                className="rounded-full border border-white/80 bg-white/58 px-3.5 py-2 text-center text-[0.72rem] font-semibold text-stone-800 shadow-[0_10px_22px_rgba(15,23,42,0.06)] backdrop-blur-md transition-colors duration-200 font-['Manrope',sans-serif] hover:border-violet-200 hover:bg-white/78 hover:text-violet-600 sm:px-7 sm:py-3 sm:text-[0.98rem] sm:shadow-[0_12px_28px_rgba(15,23,42,0.07)]"
               >
                 Explore Features
-              </a>
+              </motion.a>
             </div>
 
-            <div className="mt-4 grid grid-cols-1 gap-2 sm:mx-auto sm:max-w-lg sm:grid-cols-1 md:max-w-2xl md:grid-cols-3 md:gap-2.5 lg:mt-6 lg:max-w-none lg:gap-3">
-              <div
-                ref={(element) => {
-                  heroCardRefs.current[0] = element;
-                }}
-                className="group relative flex items-center gap-3 overflow-hidden rounded-2xl border border-white/75 bg-white/45 px-3.5 py-2.5 text-left shadow-[0_10px_24px_rgba(15,23,42,0.06)] backdrop-blur-md transition duration-300 hover:-translate-y-0.5 hover:bg-white/62 hover:shadow-[0_18px_36px_rgba(15,23,42,0.09)] active:scale-[0.99] sm:px-4 sm:py-3 md:flex-col md:items-start md:gap-1.5 md:px-3 md:py-3 lg:block lg:rounded-[1.9rem] lg:p-4 lg:shadow-[0_14px_34px_rgba(15,23,42,0.07)] lg:hover:-translate-y-1"
-              >
-                <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(255,255,255,0.55),transparent_42%)] opacity-70 transition duration-300 group-hover:opacity-100" />
-                <p className="relative z-10 shrink-0 text-[0.62rem] font-medium uppercase tracking-[0.18em] text-stone-400/90 font-['IBM_Plex_Mono',monospace] sm:text-[0.68rem] lg:text-[0.72rem] lg:tracking-[0.22em]">
-                  Capture
-                </p>
-                <p className="relative z-10 min-w-0 text-[0.82rem] leading-5 text-stone-700/90 font-['Manrope',sans-serif] sm:text-sm md:mt-0 md:text-[0.8rem] md:leading-5 lg:mt-1.5 lg:text-[0.84rem] lg:leading-5">
-                  <span className="md:hidden lg:hidden">Everything saved in one place.</span>
-                  <span className="hidden md:inline lg:hidden">Save links and notes in one vault.</span>
-                  <span className="hidden lg:inline">One vault for links, videos, and notes.</span>
-                </p>
-              </div>
-              <div
-                ref={(element) => {
-                  heroCardRefs.current[1] = element;
-                }}
-                className="group relative flex items-center gap-3 overflow-hidden rounded-2xl border border-white/75 bg-white/45 px-3.5 py-2.5 text-left shadow-[0_10px_24px_rgba(15,23,42,0.06)] backdrop-blur-md transition duration-300 hover:-translate-y-0.5 hover:bg-white/62 hover:shadow-[0_18px_36px_rgba(15,23,42,0.09)] active:scale-[0.99] sm:px-4 sm:py-3 md:flex-col md:items-start md:gap-1.5 md:px-3 md:py-3 lg:block lg:rounded-[1.9rem] lg:p-4 lg:shadow-[0_14px_34px_rgba(15,23,42,0.07)] lg:hover:-translate-y-1"
-              >
-                <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(255,255,255,0.55),transparent_42%)] opacity-70 transition duration-300 group-hover:opacity-100" />
-                <p className="relative z-10 shrink-0 text-[0.62rem] font-medium uppercase tracking-[0.18em] text-stone-400/90 font-['IBM_Plex_Mono',monospace] sm:text-[0.68rem] lg:text-[0.72rem] lg:tracking-[0.22em]">
-                  Reflect
-                </p>
-                <p className="relative z-10 min-w-0 text-[0.82rem] leading-5 text-stone-700/90 font-['Manrope',sans-serif] sm:text-sm md:mt-0 md:text-[0.8rem] md:leading-5 lg:mt-1.5 lg:text-[0.84rem] lg:leading-5">
-                  <span className="md:hidden lg:hidden">Revisit what matters.</span>
-                  <span className="hidden md:inline lg:hidden">Return to what matters.</span>
-                  <span className="hidden lg:inline">Return to what matters.</span>
-                </p>
-              </div>
-              <div
-                ref={(element) => {
-                  heroCardRefs.current[2] = element;
-                }}
-                className="group relative flex items-center gap-3 overflow-hidden rounded-2xl border border-white/75 bg-white/45 px-3.5 py-2.5 text-left shadow-[0_10px_24px_rgba(15,23,42,0.06)] backdrop-blur-md transition duration-300 hover:-translate-y-0.5 hover:bg-white/62 hover:shadow-[0_18px_36px_rgba(15,23,42,0.09)] active:scale-[0.99] sm:px-4 sm:py-3 md:flex-col md:items-start md:gap-1.5 md:px-3 md:py-3 lg:block lg:rounded-[1.9rem] lg:p-4 lg:shadow-[0_14px_34px_rgba(15,23,42,0.07)] lg:hover:-translate-y-1"
-              >
-                <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(255,255,255,0.55),transparent_42%)] opacity-70 transition duration-300 group-hover:opacity-100" />
-                <p className="relative z-10 shrink-0 text-[0.62rem] font-medium uppercase tracking-[0.18em] text-stone-400/90 font-['IBM_Plex_Mono',monospace] sm:text-[0.68rem] lg:text-[0.72rem] lg:tracking-[0.22em]">
-                  Share
-                </p>
-                <p className="relative z-10 min-w-0 text-[0.82rem] leading-5 text-stone-700/90 font-['Manrope',sans-serif] sm:text-sm md:mt-0 md:text-[0.8rem] md:leading-5 lg:mt-1.5 lg:text-[0.84rem] lg:leading-5">
-                  <span className="md:hidden lg:hidden">Share your brain in one link.</span>
-                  <span className="hidden md:inline lg:hidden">Publish thinking in one link.</span>
-                  <span className="hidden lg:inline">Share your brain in one link.</span>
-                </p>
-              </div>
+            <div className="mt-3.5 grid grid-cols-3 gap-1.5 sm:mx-auto sm:mt-4 sm:max-w-lg sm:gap-2 md:mt-5 md:max-w-2xl md:gap-2.5 lg:mt-6 lg:max-w-none lg:gap-3">
+              {heroCards.map((card, index) => (
+                <motion.div
+                  key={card.eyebrow}
+                  {...reveal({ delay: 0.2 + index * 0.08, lift: 4 })}
+                  className="group relative flex min-w-0 flex-col items-start gap-1 overflow-hidden rounded-xl border border-white/75 bg-white/45 px-2 py-2 text-left shadow-[0_8px_18px_rgba(15,23,42,0.05)] backdrop-blur-md transition-colors duration-300 hover:bg-white/62 sm:gap-1.5 sm:rounded-2xl sm:px-3.5 sm:py-3 sm:shadow-[0_10px_24px_rgba(15,23,42,0.06)] md:px-3 md:py-3 lg:rounded-[1.9rem] lg:p-4 lg:shadow-[0_14px_34px_rgba(15,23,42,0.07)]"
+                >
+                  <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(255,255,255,0.55),transparent_42%)] opacity-70 transition duration-300 group-hover:opacity-100" />
+                  <p className="relative z-10 text-[0.52rem] font-medium uppercase tracking-[0.12em] text-stone-400/90 font-['IBM_Plex_Mono',monospace] sm:text-[0.68rem] sm:tracking-[0.18em] lg:text-[0.72rem] lg:tracking-[0.22em]">
+                    {card.eyebrow}
+                  </p>
+                  <p className="relative z-10 text-[0.62rem] leading-4 text-stone-700/90 font-['Manrope',sans-serif] sm:text-sm sm:leading-5 md:text-[0.8rem] md:leading-5 lg:mt-0.5 lg:text-[0.84rem]">
+                    <span className="md:hidden lg:hidden">{card.mobileText}</span>
+                    <span className="hidden md:inline lg:hidden">{card.tabletText}</span>
+                    <span className="hidden lg:inline">{card.desktopText}</span>
+                  </p>
+                </motion.div>
+              ))}
             </div>
           </div>
 
-          <div className="relative mx-auto flex w-full max-w-[17.5rem] justify-center sm:max-w-[19rem] md:max-w-md lg:max-w-none lg:items-center lg:justify-end">
+          <div className="relative mx-auto flex w-full max-w-[21.5rem] justify-center sm:max-w-[23rem] md:max-w-md lg:max-w-none lg:items-center lg:justify-end">
             <div className="absolute inset-x-6 top-6 -z-10 h-[58%] rounded-3xl bg-violet-300/25 blur-3xl sm:inset-x-8 sm:top-8 md:inset-x-14 md:top-10 md:h-[68%] md:rounded-[2.5rem]" />
             <div className="w-full rounded-3xl border border-white/75 bg-[linear-gradient(180deg,rgba(255,255,255,0.84)_0%,rgba(245,240,255,0.82)_48%,rgba(255,255,255,0.76)_100%)] p-3 shadow-[0_20px_50px_rgba(15,23,42,0.10)] backdrop-blur-xl sm:rounded-4xl sm:p-4 md:max-w-lg md:p-5 lg:flex lg:h-[min(35rem,calc(100vh-12rem))] lg:max-h-[min(35rem,calc(100vh-12rem))] lg:max-w-[42rem] lg:min-h-0 lg:flex-col lg:p-4">
               <div className="mb-2 flex items-center justify-between gap-2 rounded-xl border border-stone-200 bg-white/70 px-2.5 py-1.5 sm:mb-3 sm:rounded-2xl sm:px-3 sm:py-2 md:px-4 md:py-3 lg:mb-1.5 lg:py-2">
