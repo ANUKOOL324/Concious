@@ -1,10 +1,10 @@
 # Concious
 
-**A second brain for the modern internet.**
+**RAG over your personal knowledge base — not a bookmark manager.**
 
-Concious helps you capture what you consume — links, videos, audio, articles, and PDFs — then retrieve and think over that knowledge with a RAG-backed assistant named **Ashqnor**.
+Concious indexes what you consume into a retrieval-ready library: platform extraction, structured OKF concepts, chunk embeddings, and hybrid search (vector + lexical → RRF → rerank). **Ashqnor** answers from that indexed context with a confidence gate, so responses stay grounded in your saved sources instead of generic chat.
 
-Save with intent. Search by meaning. Chat with your library.
+Capture → extract → chunk → embed → retrieve → generate. Saving is only the first step.
 
 ---
 
@@ -19,9 +19,8 @@ Save with intent. Search by meaning. Chat with your library.
 7. [Environment variables](#environment-variables)
 8. [MongoDB Atlas vector indexes](#mongodb-atlas-vector-indexes)
 9. [Local setup](#local-setup)
-10. [API overview](#api-overview)
-11. [Security notes](#security-notes)
-12. [License](#license)
+10. [Security notes](#security-notes)
+11. [License](#license)
 
 ---
 
@@ -451,35 +450,6 @@ npm run dev:frontend
 | `npm run build:backend` | Build API only |
 | `npm run build:frontend` | Build client only |
 | `npm run lint:frontend` | Lint frontend |
-
----
-
-## API overview
-
-| Method | Route | Purpose |
-| --- | --- | --- |
-| `POST` | `/api/v1/signup` | Create account |
-| `POST` | `/api/v1/signin` | Sign in → JWT |
-| `GET` | `/api/v1/content` | List user content |
-| `POST` | `/api/v1/content` | Create link-based content |
-| `POST` | `/api/v1/content/pdf` | Upload PDF (multipart) |
-| `PATCH` | `/api/v1/content/:id` | Update content |
-| `DELETE` | `/api/v1/content/:id` | Delete content (+ Cloudinary PDF if needed) |
-| `POST` | `/api/v1/content/:id/reindex` | Reindex one item |
-| `POST` | `/api/v1/search` | Hybrid semantic + lexical search |
-| `POST` | `/api/v1/chat` | Ashqnor RAG chat |
-| `POST` | `/api/v1/reindex-embeddings` | Reindex all user content |
-| `POST` | `/api/v1/brain/share` | Create / remove public share link |
-| `GET` | `/api/v1/brain/:shareLink` | Read shared brain |
-
-Protected routes expect the JWT in the `authorization` header.
-
-### Search & chat behavior
-
-- **Search** — hybrid chunk retrieval + RRF; legacy content-level fallback when needed
-- **Ashqnor** — hybrid → RRF → rerank → confidence → OpenRouter with sources
-- Retrieved text is treated as **untrusted reference material** in the system prompt (prompt-injection boundary)
-- Weak context → explicit fallback instead of inventing an answer
 
 ---
 
