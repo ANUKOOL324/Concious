@@ -11,7 +11,8 @@ export function logged()
     }
 }
 
-export function getUsername() {
+export function getUsername() 
+{
     return localStorage.getItem(USERNAME_KEY)?.trim() || "User";
 }
 
