@@ -184,9 +184,13 @@ export function AshqnorChat({ darkMode }: AshqnorChatProps) {
         aria-label={chatOpen ? "Close Ashqnor chat" : "Open Ashqnor chat"}
         aria-expanded={chatOpen}
         className={`fixed right-4 bottom-4 z-[120] flex h-12 w-12 cursor-pointer items-center justify-center rounded-2xl border shadow-[0_20px_50px_rgba(15,23,42,0.18)] transition hover:shadow-[0_24px_60px_rgba(15,23,42,0.22)] lg:right-5 lg:bottom-auto lg:top-[calc(50%+7rem)] lg:h-14 lg:w-14 lg:-translate-y-1/2 lg:hover:-translate-y-[52%] ${
-          darkMode
-            ? "border-white/10 bg-slate-950/95 text-emerald-300"
-            : "border-white/80 bg-white/95 text-emerald-700"
+          chatOpen
+            ? darkMode
+              ? "border-violet-400/35 bg-violet-500/20 text-violet-200 ring-1 ring-violet-400/30"
+              : "border-violet-300 bg-violet-50 text-violet-700 ring-1 ring-violet-200"
+            : darkMode
+              ? "border-white/10 bg-slate-950/95 text-emerald-500"
+              : "border-white/80 bg-white/95 text-emerald-600"
         }`}
       >
         <svg

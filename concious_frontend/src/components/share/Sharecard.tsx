@@ -43,7 +43,7 @@ export function Sharecard({ darkMode = false }: { darkMode?: boolean }) {
     >
       <p
         className={`text-center text-[0.68rem] font-semibold uppercase tracking-[0.24em] ${
-          darkMode ? "text-violet-300" : "text-violet-500"
+          darkMode ? "text-[#c7bee6]" : "text-[#8d80bc]"
         }`}
       >
         Share brain
@@ -54,8 +54,8 @@ export function Sharecard({ darkMode = false }: { darkMode?: boolean }) {
           darkMode={darkMode}
           css={
             darkMode
-              ? "inline-flex w-auto items-center justify-center whitespace-nowrap rounded-2xl bg-violet-500 px-5 py-2.5 text-sm font-semibold text-white hover:bg-violet-400"
-              : "inline-flex w-auto items-center justify-center whitespace-nowrap rounded-2xl bg-violet-600 px-5 py-2.5 text-sm font-semibold text-white hover:bg-violet-500"
+              ? "!inline-flex !w-auto !items-center !justify-center !whitespace-nowrap !rounded-2xl !border !border-[#8d80bc]/40 !bg-[#8d80bc]/18 !px-5 !py-2.5 !text-sm !font-semibold !text-[#f3f0fa] !shadow-none hover:!bg-[#8d80bc]/28 hover:!text-white focus:!ring-[#8d80bc]/35"
+              : "!inline-flex !w-auto !items-center !justify-center !whitespace-nowrap !rounded-2xl !border !border-[#8d80bc]/35 !bg-[#8d80bc]/10 !px-5 !py-2.5 !text-sm !font-semibold !text-[#6f6499] !shadow-none hover:!bg-[#8d80bc]/16 hover:!text-[#5a5080] focus:!ring-[#8d80bc]/30"
           }
           text="Copy link"
           onClose={() => shareMutation.mutate()}

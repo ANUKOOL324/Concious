@@ -84,7 +84,7 @@ export function DashboardSidebar({
               className={`truncate text-left text-xl font-semibold ${sidebarLabel(sidebarOpen, "max-w-[6.5rem]")}`}
             >
               <span className={darkMode ? "text-stone-100" : "text-black"}>Conc</span>
-              <span style={{ color: "#8d80bc" }}>ious</span>
+              <span className={darkMode ? "text-violet-300" : "text-violet-500"}>ious</span>
             </span>
           </button>
         </div>

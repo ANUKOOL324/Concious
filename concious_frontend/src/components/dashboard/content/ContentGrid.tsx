@@ -16,13 +16,9 @@ export function ContentGrid({
 }: ContentGridProps) {
   const textClass = darkMode ? "text-stone-300" : "text-stone-600";
 
-  const scrollClass = darkMode
-    ? "concious-scrollbar-dark"
-    : "concious-scrollbar-light";
-
   if (isLoading) {
     return (
-      <div className="mt-5 flex min-h-0 flex-1 items-center justify-center">
+      <div className="mt-5 flex min-h-[12rem] items-center justify-center">
         <div className="flex flex-col items-center gap-3 py-12">
           <span
             aria-hidden="true"
@@ -46,18 +42,14 @@ export function ContentGrid({
 
   if (hasError) {
     return (
-      <div
-        className={`mt-3 min-h-0 flex-1 overflow-y-auto [scrollbar-gutter:stable] sm:mt-4 ${scrollClass}`}
-      >
+      <div className="mt-3 sm:mt-4">
         <p className={textClass}>Something went wrong</p>
       </div>
     );
   }
 
   return (
-    <div
-      className={`mt-3 min-h-0 flex-1 overflow-y-auto [scrollbar-gutter:stable] sm:mt-4 ${scrollClass}`}
-    >
+    <div className="mt-2 sm:mt-2.5">
       <div className="grid grid-cols-1 gap-4 pb-6 sm:grid-cols-[repeat(auto-fill,minmax(18rem,1fr))] sm:gap-5 lg:gap-6">
         {items?.map((item) => (
           <Card

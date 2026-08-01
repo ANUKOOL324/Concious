@@ -24,8 +24,8 @@ export function SpotifyFloatingButton({
             ? "border-violet-400/35 bg-violet-500/20 text-violet-200 ring-1 ring-violet-400/30"
             : "border-violet-300 bg-violet-50 text-violet-700 ring-1 ring-violet-200"
           : darkMode
-            ? "border-white/10 bg-slate-950/95 text-emerald-300"
-            : "border-white/80 bg-white/95 text-emerald-700"
+            ? "border-white/10 bg-slate-950/95 text-emerald-500"
+            : "border-white/80 bg-white/95 text-emerald-600"
       }`}
     >
       <IoMusicalNotesOutline size={28} aria-hidden />

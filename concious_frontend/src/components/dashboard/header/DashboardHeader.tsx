@@ -16,6 +16,7 @@ interface DashboardHeaderProps {
   darkMode: boolean;
   shareOpen: boolean;
   searchQuery: string;
+  scrolled?: boolean;
   onSearchQueryChange: (value: string) => void;
   onToggleTheme: () => void;
   onOpenAddContent: () => void;
@@ -26,6 +27,7 @@ export function DashboardHeader({
   darkMode,
   shareOpen,
   searchQuery,
+  scrolled = false,
   onSearchQueryChange,
   onToggleTheme,
   onOpenAddContent,
@@ -37,14 +39,17 @@ export function DashboardHeader({
     "!h-9 !min-h-9 !w-9 !min-w-9 !px-0 sm:!h-10 sm:!min-h-10 sm:!w-auto sm:!min-w-[8.5rem] sm:!px-4 [&>span:last-child]:hidden sm:[&>span:last-child]:inline";
 
   const popoverOpen = searchActive || shareOpen;
+  const elevated = scrolled || popoverOpen;
 
   return (
     <header
-      className={`relative max-w-full overflow-visible rounded-2xl border px-3 py-3 backdrop-blur-2xl sm:rounded-3xl sm:px-5 sm:py-4 ${
-        popoverOpen ? "z-50" : "z-30"
-      } ${navShellClass(darkMode)}`}
+      className={`relative max-w-full overflow-visible border px-3 py-2.5 transition-[background-color,border-color,box-shadow,border-radius,backdrop-filter] duration-300 ease-out sm:px-5 sm:py-3 ${
+        elevated
+          ? "rounded-2xl sm:rounded-3xl"
+          : "rounded-none border-transparent"
+      } ${popoverOpen ? "z-50" : "z-30"} ${navShellClass(darkMode, elevated)}`}
     >
-      <div className="flex min-w-0 flex-col gap-3 sm:gap-4 xl:flex-row xl:items-center xl:justify-between">
+      <div className="flex min-w-0 flex-col gap-2.5 sm:gap-3 xl:flex-row xl:items-center xl:justify-between">
         <div className="min-w-0">
           <p
             className={`text-[0.58rem] font-semibold uppercase tracking-[0.18em] sm:text-[0.65rem] sm:tracking-[0.3em] ${
@@ -54,11 +59,18 @@ export function DashboardHeader({
             Dashboard
           </p>
           <h1
-            className={`mt-0.5 text-balance text-lg font-semibold tracking-tight sm:text-[1.65rem] ${
+            className={`mt-0.5 text-balance text-lg font-semibold tracking-tight sm:text-[1.5rem] ${
               darkMode ? "text-stone-100" : "text-stone-900"
             }`}
           >
-            Your saved thinking space
+            Your saved{" "}
+            <span
+              className={`font-['Fraunces',serif] text-[1.05em] font-medium italic tracking-[-0.02em] ${
+                darkMode ? "text-violet-300" : "text-violet-500"
+              }`}
+            >
+              thinking space
+            </span>
           </h1>
         </div>
 
@@ -98,7 +110,11 @@ export function DashboardHeader({
                     }
                   }}
                   placeholder="Search semantically..."
-                  className="min-w-0 flex-1 cursor-text bg-transparent text-sm outline-none"
+                  className={`min-w-0 flex-1 cursor-text bg-transparent text-sm outline-none ${
+                    darkMode
+                      ? "text-stone-100 caret-stone-200 placeholder:text-stone-500 [&:-webkit-autofill]:[-webkit-text-fill-color:#f5f5f4] [&:-webkit-autofill]:[box-shadow:inset_0_0_0_1000px_#1c1917]"
+                      : "text-stone-900 caret-stone-700 placeholder:text-stone-400 [&:-webkit-autofill]:[-webkit-text-fill-color:#1c1917] [&:-webkit-autofill]:[box-shadow:inset_0_0_0_1000px_#ffffff]"
+                  }`}
                   role="combobox"
                   aria-expanded={searchActive}
                   aria-autocomplete="list"
@@ -139,7 +155,7 @@ export function DashboardHeader({
               />
             </div>
 
-            <div className="flex min-w-0 max-w-full flex-wrap items-center justify-center gap-2 sm:justify-end sm:gap-2.5">
+            <div className="flex min-w-0 max-w-full flex-wrap items-center justify-end gap-2 sm:gap-2.5">
               <div className="hidden shrink-0 lg:contents">
                 <ThemeToggle
                   darkMode={darkMode}

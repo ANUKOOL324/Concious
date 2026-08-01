@@ -1,0 +1,7 @@
+{
+  "buildCommand": "npm run build --prefix concious_frontend",
+  "outputDirectory": "concious_frontend/dist",
+  "rewrites": [
+    { "source": "/((?!assets/).*)", "destination": "/index.html" }
+  ]
+}

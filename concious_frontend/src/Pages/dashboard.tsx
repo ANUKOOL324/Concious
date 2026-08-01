@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, type UIEvent } from "react";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
 import { fetchContentList } from "../api/contentApi";
@@ -39,6 +39,7 @@ function Dashboard() {
     return localStorage.getItem("dashboard-theme") === "dark";
   });
   const [contentModalOpen, setContentModalOpen] = useState(false);
+  const [headerScrolled, setHeaderScrolled] = useState(false);
   const [sidebarOpen, setSidebarOpen] = useState(() => {
     if (typeof window === "undefined") {
       return true;
@@ -85,6 +86,10 @@ function Dashboard() {
   useEffect(() => {
     localStorage.setItem("dashboard-theme", darkMode ? "dark" : "light");
   }, [darkMode]);
+
+  useEffect(() => {
+    setHeaderScrolled(false);
+  }, [filter, sortOrder]);
 
   useEffect(() => {
     if (isDesktop) {
@@ -169,18 +174,26 @@ function Dashboard() {
           onLogout={handleLogout}
         />
 
-        <div className="relative z-10 flex min-h-0 min-w-0 max-w-full flex-1 flex-col px-2.5 py-2.5 sm:px-4 sm:py-3 lg:px-5 lg:py-4">
+        <div className="relative z-10 flex min-h-0 min-w-0 max-w-full flex-1 flex-col px-2.5 py-2 sm:px-4 sm:py-2.5 lg:px-5 lg:py-3">
           <DashboardHeader
             darkMode={darkMode}
             shareOpen={shareOpen}
             searchQuery={searchQuery}
+            scrolled={headerScrolled}
             onSearchQueryChange={setSearchQuery}
             onToggleTheme={toggleTheme}
             onOpenAddContent={() => setContentModalOpen(true)}
             onToggleShare={() => setShareOpen((isOpen) => !isOpen)}
           />
 
-          <div className="relative z-0 min-h-0 min-w-0 flex-1 overflow-x-hidden">
+          <div
+            className={`relative z-0 min-h-0 min-w-0 flex-1 overflow-x-hidden overflow-y-auto pr-1.5 ${
+              darkMode ? "concious-scrollbar-dark" : "concious-scrollbar-light"
+            }`}
+            onScroll={(event: UIEvent<HTMLDivElement>) => {
+              setHeaderScrolled(event.currentTarget.scrollTop > 10);
+            }}
+          >
             {!isLoading && hasContent && (
               <ContentSortBar
                 darkMode={darkMode}

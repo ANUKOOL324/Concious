@@ -153,9 +153,11 @@ export function SidebarFilterList({
           onClick={handleReset}
           title="Show all content"
           aria-label="Show all content"
-          className={`${SIDEBAR_ICON} cursor-pointer rounded-xl border ${resetTone} ${resetSpin ? "animate-spin" : ""}`}
+          className={`${SIDEBAR_ICON} cursor-pointer rounded-xl border ${resetTone}`}
         >
-          <RefreshIcon />
+          <span className={`inline-flex ${resetSpin ? "animate-spin" : ""}`}>
+            <RefreshIcon />
+          </span>
         </button>
         <span
           className={`text-[0.62rem] font-semibold uppercase tracking-[0.22em] ${filterLabelTone} ${sidebarLabel(expanded, "max-w-[5rem]")}`}

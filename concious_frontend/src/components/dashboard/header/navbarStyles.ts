@@ -3,10 +3,16 @@ export const NAV_BTN =
 
 export const NAV_ICON_BTN = `${NAV_BTN} w-10 min-w-10 px-0`;
 
-export function navShellClass(darkMode: boolean) {
+export function navShellClass(darkMode: boolean, elevated = true) {
+  if (!elevated) {
+    return darkMode
+      ? "border-transparent bg-transparent shadow-none"
+      : "border-transparent bg-transparent shadow-none";
+  }
+
   return darkMode
-    ? "border-white/12 bg-[#10131b]/72 shadow-[0_12px_40px_rgba(0,0,0,0.28)]"
-    : "border-white/80 bg-white/72 shadow-[0_10px_36px_rgba(15,23,42,0.06)]";
+    ? "border-white/12 bg-[#10131b]/72 shadow-[0_12px_40px_rgba(0,0,0,0.28)] backdrop-blur-2xl"
+    : "border-white/80 bg-white/72 shadow-[0_10px_36px_rgba(15,23,42,0.06)] backdrop-blur-2xl";
 }
 
 export function navGhostBtnClass(darkMode: boolean) {
@@ -17,8 +23,8 @@ export function navGhostBtnClass(darkMode: boolean) {
 
 export function navSearchClass(darkMode: boolean) {
   return darkMode
-    ? "border-white/10 bg-white/6 text-stone-100 placeholder:text-stone-500 focus:border-violet-400/35 focus:bg-white/8"
-    : "border-stone-200/90 bg-white/75 text-stone-800 placeholder:text-stone-400 focus:border-violet-300 focus:bg-white/90";
+    ? "border-white/10 bg-white/8 text-stone-100 focus-within:border-violet-400/35 focus-within:bg-white/10"
+    : "border-stone-200/90 bg-white text-stone-900 focus-within:border-violet-300 focus-within:bg-white";
 }
 
 export function navPanelClass(darkMode: boolean) {

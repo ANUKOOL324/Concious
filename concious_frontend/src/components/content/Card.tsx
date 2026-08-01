@@ -1,6 +1,7 @@
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
-import { BsThreeDotsVertical } from "react-icons/bs";
+import { BsFileEarmarkPdf, BsThreeDotsVertical } from "react-icons/bs";
+import { LuLayers, LuNewspaper } from "react-icons/lu";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
@@ -9,7 +10,6 @@ import { ShareIcon } from "../../Icon/ShareIcon";
 import { Sbutton } from "../common/Sbutton";
 import { Backendurl } from "../../config";
 import { SpotifyIcon } from "../../Icon/SpotifyIcon";
-import { OtherIcon } from "../icons/OtherIcon";
 import { YoutubecardIcon } from "../../Icon/YotubecardIcon";
 import { Trashicon } from "../../Icon/Trashicon";
 import { CrossIcon } from "../../Icon/CrossIcon";
@@ -198,6 +198,10 @@ export function Card({
   const pdfPreviewFetchUrl = readOnly
     ? pdfUrl
     : `${Backendurl}/api/v1/content/${_id}/pdf`;
+  const documentIconWrap = darkMode
+    ? "bg-white/8 text-stone-300 ring-1 ring-white/10"
+    : "bg-stone-100 text-stone-600 ring-1 ring-stone-200/80";
+
   const typeIcon =
     type === "Spotify" ? (
       <SpotifyIcon />
@@ -205,8 +209,24 @@ export function Card({
       <TwitterIcon color={darkMode ? "#f5f5f4" : "#111827"} />
     ) : type === "Youtube" ? (
       <YoutubecardIcon />
+    ) : type === "PDF" ? (
+      <span
+        className={`inline-flex h-8 w-8 items-center justify-center rounded-lg ${documentIconWrap}`}
+      >
+        <BsFileEarmarkPdf size={18} aria-hidden />
+      </span>
+    ) : type === "Article" ? (
+      <span
+        className={`inline-flex h-8 w-8 items-center justify-center rounded-lg ${documentIconWrap}`}
+      >
+        <LuNewspaper size={18} aria-hidden />
+      </span>
     ) : (
-      <OtherIcon darkMode={darkMode} />
+      <span
+        className={`inline-flex h-8 w-8 items-center justify-center rounded-lg ${documentIconWrap}`}
+      >
+        <LuLayers size={18} aria-hidden />
+      </span>
     );
 
   const [editing, setEditing] = useState(false);
@@ -1029,10 +1049,10 @@ export function Card({
               href={link}
               target="_blank"
               rel="noreferrer"
-              className={`mt-auto inline-flex w-fit cursor-pointer items-center rounded-lg px-3 py-2 text-sm font-medium transition ${
+              className={`mt-auto inline-flex w-fit cursor-pointer items-center rounded-lg border px-3 py-2 text-sm font-medium transition ${
                 darkMode
-                  ? "bg-violet-500/18 text-violet-100 hover:bg-violet-500/28"
-                  : "bg-violet-100 text-violet-700 hover:bg-violet-200"
+                  ? "border-teal-400/25 bg-teal-500/15 text-teal-100 hover:bg-teal-500/25"
+                  : "border-teal-200 bg-teal-50 text-teal-700 hover:bg-teal-100"
               }`}
             >
               Open link
@@ -1067,10 +1087,10 @@ export function Card({
               href={link}
               target="_blank"
               rel="noreferrer"
-              className={`mt-auto inline-flex w-fit cursor-pointer items-center rounded-lg px-3 py-2 text-sm font-medium transition ${
+              className={`mt-auto inline-flex w-fit cursor-pointer items-center rounded-lg border px-3 py-2 text-sm font-medium transition ${
                 darkMode
-                  ? "bg-violet-500/18 text-violet-100 hover:bg-violet-500/28"
-                  : "bg-violet-100 text-violet-700 hover:bg-violet-200"
+                  ? "border-sky-400/25 bg-sky-500/15 text-sky-100 hover:bg-sky-500/25"
+                  : "border-sky-200 bg-sky-50 text-sky-700 hover:bg-sky-100"
               }`}
             >
               Open article
@@ -1099,17 +1119,18 @@ export function Card({
                 type="button"
                 onClick={openPdfViewer}
                 disabled={pdfLoading}
-                className={`inline-flex cursor-pointer items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium transition disabled:cursor-wait disabled:opacity-80 ${
+                aria-busy={pdfLoading}
+                className={`inline-flex cursor-pointer items-center gap-2 whitespace-nowrap rounded-lg border px-3 py-2 text-sm font-medium transition disabled:cursor-wait disabled:opacity-80 ${
                   darkMode
-                    ? "bg-violet-500/18 text-violet-100 hover:bg-violet-500/28"
-                    : "bg-violet-100 text-violet-700 hover:bg-violet-200"
+                    ? "border-rose-400/25 bg-rose-500/15 text-rose-100 hover:bg-rose-500/25"
+                    : "border-rose-200 bg-rose-50 text-rose-700 hover:bg-rose-100"
                 }`}
               >
                 {pdfLoading ? (
                   <>
                     <span
                       aria-hidden="true"
-                      className="inline-block size-3.5 animate-spin rounded-full border-2 border-current border-t-transparent"
+                      className="inline-block size-3.5 shrink-0 animate-spin rounded-full border-2 border-current border-t-transparent"
                     />
                     Loading...
                   </>
