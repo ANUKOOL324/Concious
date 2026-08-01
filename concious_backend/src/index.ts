@@ -7,8 +7,8 @@ async function startServer() {
     await connectDB();
     console.log("MongoDB connected");
 
-    app.listen(PORT, () => {
-      console.log(`localhost:${PORT}`);
+    app.listen(PORT, "0.0.0.0", () => {
+      console.log(`Server listening on port ${PORT}`);
     });
   } catch (error) {
     console.error("Failed to start server", error);
