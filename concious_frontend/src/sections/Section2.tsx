@@ -10,13 +10,13 @@ const featureCards = [
     title: "Unified Content Vault",
     mobileTitle: "Content Vault",
     points: [
-      "Save YouTube, Twitter, Spotify, articles, and podcasts",
+      "Save YouTube, Twitter/X, Spotify, articles, PDFs, and more",
+      "Add notes, tags, collections, and why you saved each item",
       "Bring scattered bookmarks into one intentional system",
       "Keep content for reflection instead of endless scrolling",
-      "A calmer upgrade from watch later and old bookmark piles",
     ],
     mobilePoints: [
-      "Save links, videos, and notes in one place",
+      "Save links, PDFs, videos, and notes in one place",
       "Replace messy bookmarks with one calm vault",
     ],
   },
@@ -26,10 +26,10 @@ const featureCards = [
     title: "AI Mode",
     mobileTitle: "AI Search",
     points: [
-      "Search semantically across the things you already saved",
+      "Search semantically across everything you have indexed",
       "Ask questions grounded in your own collected content",
       "Chat with your knowledge through Ashqnor",
-      "Spot patterns and connections across ideas more quickly",
+      "Get source-backed answers instead of generic chat",
     ],
     mobilePoints: [
       "Search by meaning across saved content",
