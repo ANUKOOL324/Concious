@@ -8,6 +8,7 @@ import { Signup } from "./Pages/Signup";
 import { Sharedbrain } from "./components/share/SharedBrain";
 import Main from "./Pages/Main";
 import WhyConscious from "./components/layout/Whyconcious";
+import { ScrollToTop } from "./components/layout/ScrollToTop";
 import axios from "axios";
 
 axios.interceptors.response.use(
@@ -39,6 +40,7 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <BrowserRouter>
+        <ScrollToTop />
         <Toaster
           position="top-right"
           toastOptions={{

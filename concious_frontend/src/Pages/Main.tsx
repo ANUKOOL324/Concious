@@ -19,21 +19,21 @@ const MEMORY_CORE_ORIGIN = "400 300";
 const heroCards = [
   {
     eyebrow: "Capture",
-    mobileText: "One place for everything.",
-    tabletText: "Save links and notes in one vault.",
-    desktopText: "One vault for links, videos, and notes.",
+    mobileText: "Links, PDFs, and notes.",
+    tabletText: "Save links, PDFs, and notes in one vault.",
+    desktopText: "One vault for links, PDFs, videos, and notes.",
   },
   {
-    eyebrow: "Reflect",
-    mobileText: "Return to what matters.",
-    tabletText: "Return to what matters.",
-    desktopText: "Return to what matters.",
+    eyebrow: "Retrieve",
+    mobileText: "Search and ask Ashqnor.",
+    tabletText: "Semantic search and Ashqnor chat.",
+    desktopText: "Find by meaning and ask Ashqnor from your sources.",
   },
   {
     eyebrow: "Share",
     mobileText: "Your brain, one link.",
-    tabletText: "Publish thinking in one link.",
-    desktopText: "Share your brain in one link.",
+    tabletText: "Share a read-only brain link.",
+    desktopText: "Share your brain with one read-only link.",
   },
 ];
 
@@ -211,16 +211,16 @@ function Main() {
             </h1>
 
             <p className="mt-3 text-sm leading-6 text-stone-600 font-['Manrope',sans-serif] sm:hidden">
-              Save what matters. Revisit with clarity.
+              Save what matters. Find it by meaning.
             </p>
 
             <p className="mt-3 hidden max-w-xl text-sm leading-6 text-stone-600 font-['Manrope',sans-serif] sm:block md:mt-4 md:text-base md:leading-7 lg:mt-4 lg:max-w-2xl lg:text-[1.05rem] lg:leading-7">
               <span className="lg:hidden">
-                Save what matters, revisit with clarity, and build a calmer knowledge system.
+                Save what matters, search by meaning, and ask Ashqnor from your own sources.
               </span>
               <span className="hidden lg:inline">
-                Save the signals worth keeping, revisit them with clarity, and
-                build a calmer personal knowledge system that grows with you.
+                Save the signals worth keeping, retrieve them by meaning, and
+                ask Ashqnor questions grounded in your personal knowledge vault.
               </span>
             </p>
 

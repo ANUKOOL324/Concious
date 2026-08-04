@@ -132,7 +132,7 @@ export function Section2() {
             className="mt-5 flex justify-center sm:mt-8 lg:mt-10"
           >
             <Nbutton
-              onClose={() => navigate("/Why")}
+              onClose={() => navigate("/why")}
               withSound
               text="Why Concious?"
               css="cursor-pointer rounded-full border border-white/24 bg-white/10 px-6 py-2.5 text-sm font-semibold text-white shadow-[0_14px_32px_rgba(0,0,0,0.14)] backdrop-blur-md transition duration-200 hover:-translate-y-0.5 hover:bg-white/16 hover:border-white/36 active:translate-y-[1px] sm:px-8 sm:py-3 sm:text-base"

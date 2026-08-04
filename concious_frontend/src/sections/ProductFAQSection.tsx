@@ -7,41 +7,41 @@ const faqs = [
     question: "What can I store in Concious right now?",
     mobileQuestion: "What can I store?",
     answer:
-      "You can save links from YouTube, Twitter (X), Spotify, articles, blogs, podcasts, and any web content you want to revisit later. Concious acts as one place for everything you consume online.",
+      "You can save YouTube, Twitter/X, Spotify, articles, PDFs, and other links, then add notes, tags, collections, and why you saved each item. Concious becomes one vault for the knowledge you want to keep.",
     mobileAnswer:
-      "YouTube, Twitter, Spotify, articles, podcasts, and any link you want to revisit later.",
+      "YouTube, Twitter/X, Spotify, articles, PDFs, plus notes, tags, and why you saved it.",
   },
   {
     question: "How is Concious different from bookmarks or Notion?",
     mobileQuestion: "How is it different from bookmarks?",
     answer:
-      "Bookmarks only store links, and Notion usually needs manual structure. Concious is designed around retrieval, context, and a better reading flow, so your saved content stays easier to search and revisit.",
+      "Bookmarks only store links, and Notion usually needs manual structure. Concious indexes what you save so you can search by meaning, ask Ashqnor grounded questions, and share a read-only brain link when you want.",
     mobileAnswer:
-      "Bookmarks only store links. Concious is built for retrieval, context, and easier search.",
+      "Bookmarks store links. Concious indexes them for semantic search, Ashqnor chat, and sharing.",
   },
   {
     question: "What does Ashqnor actually do?",
     mobileQuestion: "What does Ashqnor do?",
     answer:
-      "Ashqnor is an AI assistant for your saved knowledge. It helps you find, summarize, and recommend content based on what you already collected, so you can ask naturally instead of hunting through folders.",
+      "Ashqnor is an AI assistant over your own library. It retrieves relevant chunks from what you saved and answers with source-backed context, so responses stay grounded in your content instead of generic chat.",
     mobileAnswer:
-      "Ashqnor helps you find, summarize, and explore content from what you already saved.",
+      "Ashqnor answers from your saved sources with grounded, source-backed context.",
   },
   {
     question: "Can Ashqnor recommend content I have not saved yet?",
     mobileQuestion: "Can Ashqnor recommend new content?",
     answer:
-      "Yes. Ashqnor can suggest new videos, podcasts, or articles based on your saved content and interests, helping you discover useful material instead of drifting into endless random scrolling.",
+      "Not yet. Right now Ashqnor focuses on retrieving and answering from what you already saved. Smarter recommendations based on your interests are planned for later.",
     mobileAnswer:
-      "Yes. It can suggest new content based on what you already saved and care about.",
+      "Not yet. Ashqnor currently works on your saved library; recommendations are coming later.",
   },
   {
     question: "Why build Concious around AI at all?",
     mobileQuestion: "Why use AI here?",
     answer:
-      "Because manual organization breaks down as your library grows. AI helps Concious understand meaning, context, and patterns so your saved knowledge stays usable instead of getting buried.",
+      "Because folders alone break down as your library grows. Embeddings, hybrid search, and Ashqnor help Concious understand meaning so your saved knowledge stays findable and useful over time.",
     mobileAnswer:
-      "Manual organization breaks down as your library grows. AI keeps saved knowledge usable.",
+      "Folders break down as libraries grow. AI keeps saved knowledge searchable by meaning.",
   },
 ];
 

@@ -4,47 +4,47 @@ import { useScrollReveal } from "../components/common/useScrollReveal";
 const pricingPlans = [
   {
     name: "Free",
-    description: "For organizing links and building your first second-brain habit.",
-    mobileDescription: "Start organizing links and building your first brain habit.",
+    description: "For capturing links, PDFs, and notes into one personal vault.",
+    mobileDescription: "Capture links, PDFs, and notes in one vault.",
     price: "Rs 0",
     cadence: "/ month",
     cta: "Get Started",
     featured: false,
     features: [
-      { label: "Save YouTube, Twitter, and Spotify links", enabled: true },
-      { label: "Manual folders and tags", enabled: true },
-      { label: "Basic keyword search", enabled: true },
-      { label: "Ashqnor AI chatbot", enabled: false },
-      { label: "Semantic search", enabled: false },
+      { label: "Save YouTube, Twitter/X, Spotify, articles, and PDFs", enabled: true },
+      { label: "Notes, tags, collections, and why-saved", enabled: true },
+      { label: "Filter, sort, and share your brain", enabled: true },
+      { label: "Ashqnor AI chat", enabled: false },
+      { label: "Semantic search over indexed content", enabled: false },
       { label: "Smart recommendations", enabled: false },
     ],
     mobileFeatures: [
-      { label: "Save links from major platforms", enabled: true },
-      { label: "Folders, tags, and keyword search", enabled: true },
-      { label: "Ashqnor AI chatbot", enabled: false },
+      { label: "Save links, articles, and PDFs", enabled: true },
+      { label: "Notes, tags, and shared brain", enabled: true },
+      { label: "Ashqnor AI chat", enabled: false },
       { label: "Semantic search", enabled: false },
     ],
   },
   {
     name: "Premium",
-    description: "For people who want AI-assisted recall, search, and discovery.",
-    mobileDescription: "AI recall, semantic search, and smarter discovery.",
+    description: "For AI-assisted recall with Ashqnor and meaning-based search.",
+    mobileDescription: "Ashqnor chat, semantic search, and faster indexing.",
     price: "Rs 399",
     cadence: "/ month",
     cta: "Upgrade to Premium",
     featured: true,
     features: [
       { label: "Everything in Free", enabled: true },
-      { label: "Ashqnor AI chatbot", enabled: true },
-      { label: "Semantic search", enabled: true },
-      { label: "AI-powered recommendations", enabled: true },
+      { label: "Ashqnor source-backed chat", enabled: true },
+      { label: "Semantic + hybrid search", enabled: true },
+      { label: "Background indexing for better recall", enabled: true },
       { label: "Unlimited saved content", enabled: true },
-      { label: "Faster indexing", enabled: true },
+      { label: "AI recommendations (coming soon)", enabled: true },
     ],
     mobileFeatures: [
       { label: "Everything in Free", enabled: true },
       { label: "Ashqnor + semantic search", enabled: true },
-      { label: "AI recommendations", enabled: true },
+      { label: "Background indexing", enabled: true },
       { label: "Unlimited saves", enabled: true },
     ],
   },
@@ -59,7 +59,7 @@ const pricingPlans = [
     features: [
       { label: "Everything in Premium", enabled: true },
       { label: "Team and multi-user access", enabled: true },
-      { label: "Custom AI workflows", enabled: true },
+      { label: "Custom AI and indexing workflows", enabled: true },
       { label: "Dedicated support", enabled: true },
       { label: "SLA and priority features", enabled: true },
       { label: "Usage-based pricing", enabled: true },
@@ -90,7 +90,7 @@ export function PricingSection() {
           <span className="block text-violet-300">Concious</span>
         </h2>
         <p className="mx-auto mt-3 whitespace-nowrap text-[0.68rem] leading-none text-stone-200/88 sm:text-[0.85rem] md:mt-4 md:text-[0.9rem] lg:text-[0.95rem]">
-          Start free, upgrade when Ashqnor becomes essential.
+          Start free with your vault, upgrade for Ashqnor and semantic search.
         </p>
       </div>
 
